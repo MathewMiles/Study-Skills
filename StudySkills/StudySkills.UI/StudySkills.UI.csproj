@@ -72,16 +72,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Views\StudySetView.xaml.cs">
+      <DependentUpon>StudySetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudySetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainViews\ShellView.xaml.cs">
+    <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViews\ShellViewModel.cs" />
-    <Compile Include="MainViews\TitleBarView.xaml.cs">
-      <DependentUpon>TitleBarView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainViews\TitleBarViewModel.cs" />
+    <Compile Include="Views\ShellViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,15 +109,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainViews\ShellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainViews\TitleBarView.xaml">
+    <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudySetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

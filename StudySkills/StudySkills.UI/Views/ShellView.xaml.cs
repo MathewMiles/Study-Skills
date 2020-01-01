@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudySkills.UI.MainViews
+namespace StudySkills.UI.Views
 {
     /// <summary>
-    /// Interaction logic for TitleBarView.xaml
+    /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class TitleBarView : UserControl
+    public partial class ShellView : Window
     {
-        public TitleBarView()
+        public ShellView()
         {
             InitializeComponent();
         }

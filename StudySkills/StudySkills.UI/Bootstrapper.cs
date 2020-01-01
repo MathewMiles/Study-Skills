@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using StudySkills.UI.MainViews;
+using StudySkills.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
