@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
         xmlns:local="clr-namespace:StudySkills.UI.Views"
         mc:Ignorable="d"
-        Title="Study Skills" Height="600" Width="800" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Background="#00000000" WindowStyle="None" AllowsTransparency="True">
+        Title="Study Skills" Height="600" Width="800" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
         <Image x:Key="OptionsIcon" Source="../Resources/Images/OptionsIcon.png"/>
     </Window.Resources>
@@ -14,7 +15,11 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="550"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Width="800" Height="50" Background="{StaticResource BackPrimary}">
+        <Grid Grid.Row="0" 
+              Width="800" 
+              Height="50" 
+              Background="{StaticResource BackPrimary}"
+              cal:Message.Attach="[Event MouseLeftButtonDown] = [Action DragWindow($view)]">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -26,10 +31,11 @@
                    FontSize="30"
                    Foreground="{StaticResource FontPrimary}"/>
             <Button x:Name="Options"
-                Grid.Column="2"
-                Margin="0 6 6 6"
-                Content="{StaticResource OptionsIcon}"
-                Opacity=".87"/>
+                    Grid.Column="2"
+                    Margin="6 6 6 6"
+                    Padding="4 4 4 4"
+                    Content="{StaticResource OptionsIcon}"
+                    Style="{StaticResource IconButton}"/>
         </Grid>
         <ContentControl x:Name="ActiveItem"
                           Grid.Row="1"/>
