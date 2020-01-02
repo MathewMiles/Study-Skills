@@ -3,10 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:StudySkills.UI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800" Background="{StaticResource Background}">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="235"/>
+            <ColumnDefinition Width="565"/>
+        </Grid.ColumnDefinitions>
+        <!-- Select Study Set Menu -->
+        <ScrollViewer Grid.Column="0"
+                      Width="235"
+                      Style="{DynamicResource SelectStudySet}">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+            </ScrollViewer.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="AddNewStudySet"
+                        Grid.Row="0"
+                        Width="210"
+                        Height="35"
+                        Margin="10 20 0 0"
+                        Padding="-35 -5 0 0"
+                        Content="+ New Study Set"
+                        FontSize="20"
+                        Style="{StaticResource AddNewButton}"/>
+            </Grid>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1"
+                      Width="565"
+                      Style="{StaticResource SelectStudySet}">
+            <Grid>
+                <Border BorderThickness="1 0 0 0" BorderBrush="{StaticResource BackSecondary}"/>
+
+            </Grid>
+        </ScrollViewer>
     </Grid>
+    
 </UserControl>
