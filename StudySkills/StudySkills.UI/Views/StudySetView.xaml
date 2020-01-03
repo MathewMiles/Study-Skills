@@ -9,35 +9,40 @@
              d:DesignHeight="550" d:DesignWidth="800" Background="{StaticResource Background}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="235"/>
-            <ColumnDefinition Width="565"/>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="560"/>
         </Grid.ColumnDefinitions>
         <!-- Select Study Set Menu -->
         <ScrollViewer Grid.Column="0"
-                      Width="235"
-                      Style="{DynamicResource SelectStudySet}">
+                      Width="240"
+                      Style="{DynamicResource SelectStudySetScrollViewer}">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
             </ScrollViewer.Resources>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="70"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="AddNewStudySet"
                         Grid.Row="0"
                         Width="210"
                         Height="35"
-                        Margin="10 20 0 0"
+                        Margin="10 20 0 15"
                         Padding="-35 -5 0 0"
                         Content="+ New Study Set"
                         FontSize="20"
                         Style="{StaticResource AddNewButton}"/>
+                <ListBox x:Name="StudySets"
+                         Grid.Row="1"
+                         SelectionMode="Single">
+                    
+                </ListBox>
             </Grid>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1"
-                      Width="565"
-                      Style="{StaticResource SelectStudySet}">
+                      Width="560"
+                      Style="{StaticResource SelectStudySetScrollViewer}">
             <Grid>
                 <Border BorderThickness="1 0 0 0" BorderBrush="{StaticResource BackSecondary}"/>
 

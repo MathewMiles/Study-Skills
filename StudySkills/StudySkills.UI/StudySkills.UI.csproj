@@ -72,6 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Views\StudySetView.xaml.cs">
       <DependentUpon>StudySetView.xaml</DependentUpon>
     </Compile>
@@ -110,6 +111,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
