@@ -27,5 +27,15 @@ namespace StudySkills.UI.Views
         {
             ((Window)sender).DragMove(); 
         }
+
+        public void Minimize(object sender)
+        {
+            ((Window)sender).WindowState = WindowState.Minimized;
+        }
+
+        public void Close(object sender)
+        {
+            ((Window)sender).Close();
+        }
     }
 }

@@ -13,12 +13,32 @@
     <!-- Title Bar -->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="550"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" 
+        <Grid Grid.Row="0"
+              Background="{StaticResource Background}"
+              cal:Message.Attach="[Event MouseLeftButtonDown] = [Action DragWindow($view)]">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button 
+                    Grid.Column="1"
+                    Background="Yellow"
+                    Style="{StaticResource WindowButton}"
+                    cal:Message.Attach="[Event Click] = [Action Minimize($view)]"/>
+            <Button 
+                    Grid.Column="2"
+                    Background="Red"
+                    Style="{StaticResource WindowButton}"
+                    cal:Message.Attach="[Event Click] = [Action Close($view)]"/>
+        </Grid>
+        <Grid Grid.Row="1" 
               Width="800" 
-              Height="50" 
+              Height="40" 
               Background="{StaticResource BackPrimary}"
               cal:Message.Attach="[Event MouseLeftButtonDown] = [Action DragWindow($view)]">
             <Grid.ColumnDefinitions>
@@ -27,19 +47,18 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                   Margin="15 3 0 0"
+                   Margin="15 0 0 0"
                    Text="Study Skills"
-                   FontSize="30"
+                   FontSize="27"
                    Foreground="{StaticResource FontPrimary}"/>
             <Button x:Name="Options"
                     Grid.Column="2"
-                    Margin="6 6 6 6"
-                    Padding="4 4 4 4"
+                    Margin="5"
                     Content="{StaticResource OptionsIcon}"
                     Style="{StaticResource IconButton}"/>
         </Grid>
         <!-- Active Screen -->
         <ContentControl x:Name="ActiveItem"
-                          Grid.Row="1"/>
+                          Grid.Row="2"/>
     </Grid>
 </Window>

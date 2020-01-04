@@ -12,6 +12,7 @@
             <ColumnDefinition Width="240"/>
             <ColumnDefinition Width="560"/>
         </Grid.ColumnDefinitions>
+        <Border BorderThickness="0 0 1 0" BorderBrush="{StaticResource BackSecondary}"/>
         <!-- Select Study Set Menu -->
         <ScrollViewer Grid.Column="0"
                       Width="240"
@@ -35,17 +36,110 @@
                         Style="{StaticResource AddNewButton}"/>
                 <ListBox x:Name="StudySets"
                          Grid.Row="1"
-                         SelectionMode="Single">
-                    
-                </ListBox>
+                         SelectionMode="Single"
+                         Style="{StaticResource SelectStudySetListBox}"/>
             </Grid>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1"
                       Width="560"
                       Style="{StaticResource SelectStudySetScrollViewer}">
             <Grid>
-                <Border BorderThickness="1 0 0 0" BorderBrush="{StaticResource BackSecondary}"/>
-
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Margin="0 15 0 0"
+                           Text="Study Set 1"
+                           FontSize="40"
+                           Foreground="{StaticResource FontPrimary}"
+                           HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <Button x:Name="Study"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/StudyIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Study"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Flashcards"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/FlashcardsIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Flashcards"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Match"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/MatchIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Match"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Quiz"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/QuizIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Quiz"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <Slider x:Name="SelectTerms"
+                        Grid.Row="2"
+                        Margin="0 -26 0 0"
+                        Width="480"
+                        Height="30"
+                        Minimum="0"
+                        Maximum="1"
+                        IsSnapToTickEnabled="True"
+                        TickFrequency="1"
+                        Style="{StaticResource SelectTermsSlider}"/>
+                <Button x:Name="AddNewTerm"
+                        Grid.Row="3"
+                        Width="200"
+                        Height="30"
+                        Margin="0 -16 0 0"
+                        Padding="0"
+                        Content="+ Add New Term"
+                        FontSize="17"
+                        Style="{StaticResource AddNewButton}"/>
             </Grid>
         </ScrollViewer>
     </Grid>

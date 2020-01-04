@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/Button.xaml" />
                 <ResourceDictionary Source="Styles/ScrollViewer.xaml" />
                 <ResourceDictionary Source="Styles/ListBox.xaml" />
+                <ResourceDictionary Source="Styles/Slider.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

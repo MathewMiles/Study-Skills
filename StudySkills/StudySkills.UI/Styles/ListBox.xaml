@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:StudySkills.UI.Styles">
 
-    <Style x:Key="{x:Type ListBox}" TargetType="ListBox">
+    <Style x:Key="SelectStudySetListBox" TargetType="ListBox">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Template">
