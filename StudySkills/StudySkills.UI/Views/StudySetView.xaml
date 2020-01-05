@@ -18,7 +18,7 @@
                       Width="240"
                       Style="{DynamicResource SelectStudySetScrollViewer}">
             <ScrollViewer.Resources>
-                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">8</sys:Double>
             </ScrollViewer.Resources>
             <Grid>
                 <Grid.RowDefinitions>
@@ -40,9 +40,13 @@
                          Style="{StaticResource SelectStudySetListBox}"/>
             </Grid>
         </ScrollViewer>
+        <!-- Study Set View -->
         <ScrollViewer Grid.Column="1"
                       Width="560"
                       Style="{StaticResource SelectStudySetScrollViewer}">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
+            </ScrollViewer.Resources>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75"/>

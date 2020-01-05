@@ -53,7 +53,7 @@
         <Setter Property="Margin" Value="8 -10 8 0"/>
         <Setter Property="Height" Value="85"/>
         <Setter Property="Width" Value="85"/>
-        <Setter Property="Foreground" Value="{StaticResource FontSecondary}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontPrimary}"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
