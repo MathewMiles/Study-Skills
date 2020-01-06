@@ -39,9 +39,65 @@
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="SnapsToDevicePixels" Value="true" />
                     <Setter Property="OverridesDefaultStyle" Value="true" />
-                    <Setter Property="Background" Value="White"/>
                     <Setter Property="Width" Value="210"/>
                     <Setter Property="Margin" Value="10 0 0 15"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border x:Name="Border"
+                                        Padding="0"
+                                        SnapsToDevicePixels="true"
+                                        CornerRadius="10"
+                                        Background="{StaticResource BackPrimary}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="SelectionStates">
+                                            <VisualState x:Name="Unselected" />
+                                            <VisualState x:Name="Selected">
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                                  Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                        <EasingColorKeyFrame KeyTime="0"
+                                                                             Value="{Binding Color, Source={StaticResource Highlight}}" />
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SelectTermListBox" TargetType="ListBox">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBox">
+                    <Border Name="Border"
+                            BorderThickness="0"
+                            Background="Transparent">
+                        <StackPanel Margin="2"
+                                    IsItemsHost="True" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="SnapsToDevicePixels" Value="true" />
+                    <Setter Property="OverridesDefaultStyle" Value="true" />
+                    <Setter Property="Height" Value="Auto"/>
+                    <Setter Property="MinHeight" Value="70"/>
+                    <Setter Property="Width" Value="480"/>
+                    <Setter Property="Margin" Value="0 0 0 15"/>
                     <Setter Property="Padding" Value="0"/>
                     <Setter Property="Template">
                         <Setter.Value>

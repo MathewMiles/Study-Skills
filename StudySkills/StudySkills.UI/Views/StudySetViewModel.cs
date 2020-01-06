@@ -12,6 +12,7 @@ namespace StudySkills.UI.Views
     {
         private IEventAggregator _eventAggregator;
         private List<StudySet> _studySets = new List<StudySet>();
+        private List<TermDefinitionPair> _terms = new List<TermDefinitionPair>();
 
         public StudySetViewModel(
             IEventAggregator eventAggregator)
@@ -21,6 +22,7 @@ namespace StudySkills.UI.Views
         }
 
         public List<StudySet> StudySets => _studySets;
+        public List<TermDefinitionPair> Terms => _terms;
 
         private void Test()
         {
@@ -30,6 +32,14 @@ namespace StudySkills.UI.Views
                 {
                     Name = $"Study Set {c} longbitattheendlol",
                     Terms = 120
+                });
+            }
+            for (int c = 1; c < 9; c++)
+            {
+                Terms.Add(new TermDefinitionPair()
+                {
+                    Term = $"Term {c} longbitattheendlol",
+                    Definition = $"Definition {c}"
                 });
             }
         }

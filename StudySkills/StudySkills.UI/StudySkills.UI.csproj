@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
+    <Compile Include="Core\Models\TermDefinitionPair.cs" />
     <Compile Include="Views\StudySetView.xaml.cs">
       <DependentUpon>StudySetView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +146,10 @@
     <Resource Include="Resources\Images\MatchIcon.png" />
     <Resource Include="Resources\Images\OptionsIcon.png" />
     <Resource Include="Resources\Images\QuizIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\DeleteIcon.png" />
+    <Resource Include="Resources\Images\EditIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
