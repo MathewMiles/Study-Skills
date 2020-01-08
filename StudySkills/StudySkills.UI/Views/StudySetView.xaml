@@ -183,7 +183,10 @@
                                         Padding="4"
                                         VerticalAlignment="Top"
                                         Style="{StaticResource IconButton}"
-                                        Background="Transparent">
+                                        Background="Transparent"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},
+                                                             Path=IsMouseOver,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
                                     <Button.Content>
                                         <Image Source="../Resources/Images/EditIcon.png"/>
                                     </Button.Content>
@@ -196,7 +199,10 @@
                                         Padding="4"
                                         VerticalAlignment="Top"
                                         Style="{StaticResource IconButton}"
-                                        Background="Transparent">
+                                        Background="Transparent"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},
+                                                             Path=IsMouseOver,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
                                     <Button.Content>
                                         <Image Source="../Resources/Images/DeleteIcon.png"/>
                                     </Button.Content>

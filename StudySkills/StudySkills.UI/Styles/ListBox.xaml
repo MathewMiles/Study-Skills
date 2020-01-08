@@ -48,7 +48,7 @@
                                 <Border x:Name="Border"
                                         Padding="0"
                                         SnapsToDevicePixels="true"
-                                        CornerRadius="10"
+                                        CornerRadius="7"
                                         Background="{StaticResource BackPrimary}">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="SelectionStates">

@@ -1,7 +1,8 @@
 ﻿<Application x:Class="StudySkills.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:StudySkills.UI">
+             xmlns:local="clr-namespace:StudySkills.UI"
+             xmlns:converters="clr-namespace:StudySkills.UI.Core.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,6 +15,7 @@
                 <ResourceDictionary Source="Styles/ListBox.xaml" />
                 <ResourceDictionary Source="Styles/Slider.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
