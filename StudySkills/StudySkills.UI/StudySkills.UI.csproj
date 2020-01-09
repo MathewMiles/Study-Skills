@@ -75,6 +75,10 @@
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
+    <Compile Include="Views\PopUps\NewStudySetModalView.xaml.cs">
+      <DependentUpon>NewStudySetModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUps\NewStudySetModalViewModel.cs" />
     <Compile Include="Views\StudySetView.xaml.cs">
       <DependentUpon>StudySetView.xaml</DependentUpon>
     </Compile>
@@ -125,6 +129,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUps\NewStudySetModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

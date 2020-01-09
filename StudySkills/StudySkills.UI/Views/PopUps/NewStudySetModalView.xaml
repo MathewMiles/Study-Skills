@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudySkills.UI.Views.PopUps"
         mc:Ignorable="d"
-        Title="NewStudySetModalView" Height="450" Width="800">
-    <Grid>
-        
+        Title="NewStudySetModalView" Height="130" Width="340" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None">
+    <Grid Background="{StaticResource BackPrimary}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Background="{StaticResource Background}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="New Study Set"
+                       FontSize="20"
+                       Foreground="{StaticResource FontPrimary}"
+                       Margin="10 0 0 0"/>
+        </Grid>
+        <TextBox x:Name="Name"
+                 Grid.Row="1"
+                 Width="300"
+                 Margin="0 15"
+                 Style="{StaticResource SingleLineTextBox}"/>
+        <Button x:Name="Create"
+                Grid.Row="2"
+                Width="300"
+                Margin="0 0 0 15"
+                Content="Create Study Set"
+                Style="{StaticResource SaveButton}"/>
     </Grid>
 </Window>
