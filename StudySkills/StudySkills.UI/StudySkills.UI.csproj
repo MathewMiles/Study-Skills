@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
+    <Compile Include="Core\Events\CreateStudySetEvent.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
     <Compile Include="Views\PopUps\NewStudySetModalView.xaml.cs">
@@ -163,6 +164,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\DeleteIcon.png" />
     <Resource Include="Resources\Images\EditIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\XIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

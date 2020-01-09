@@ -25,7 +25,7 @@
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="AddNewStudySet"
+                <Button x:Name="OpenCreateStudySetModal"
                         Grid.Row="0"
                         Width="210"
                         Height="35"

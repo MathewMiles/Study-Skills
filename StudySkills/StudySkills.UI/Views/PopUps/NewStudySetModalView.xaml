@@ -23,8 +23,19 @@
                        FontSize="20"
                        Foreground="{StaticResource FontPrimary}"
                        Margin="10 0 0 0"/>
+            <Button x:Name="Cancel"
+                    Grid.Column="2"
+                    Height="16"
+                    Width="16"
+                    Margin="7"
+                    Style="{StaticResource IconButton}"
+                    Background="Transparent">
+                <Button.Content>
+                    <Image Source="/Resources/Images/XIcon.png"/>
+                </Button.Content>
+            </Button>
         </Grid>
-        <TextBox x:Name="Name"
+        <TextBox x:Name="StudySetName"
                  Grid.Row="1"
                  Width="300"
                  Margin="0 15"

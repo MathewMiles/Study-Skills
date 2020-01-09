@@ -11,7 +11,7 @@ namespace StudySkills.UI.Views
 {
     public class ShellViewModel : Conductor<object>
     {
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
         private StudySetViewModel _studySetVM;
 
         public ShellViewModel(

@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
+using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
+using StudySkills.UI.Views.PopUps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +10,43 @@ using System.Threading.Tasks;
 
 namespace StudySkills.UI.Views
 {
-    public class StudySetViewModel : Screen
+    public class StudySetViewModel : Screen, IHandle<CreateStudySetEvent>
     {
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IWindowManager _windowManager;
         private List<StudySet> _studySets = new List<StudySet>();
         private List<TermDefinitionPair> _terms = new List<TermDefinitionPair>();
 
         public StudySetViewModel(
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            IWindowManager windowManager)
         {
             _eventAggregator = eventAggregator;
+            _windowManager = windowManager;
             Test();
         }
 
         public List<StudySet> StudySets => _studySets;
         public List<TermDefinitionPair> Terms => _terms;
+
+        private void CreateStudySet(string name)
+        {
+            StudySets.Add(new StudySet()
+            {
+                Name = name,
+                Terms = 0
+            });
+        }
+
+        public void OpenCreateStudySetModal()
+        {
+            _windowManager.ShowDialog(new NewStudySetModalViewModel());
+        }
+
+        public void Handle(CreateStudySetEvent message)
+        {
+            CreateStudySet(message.Name);
+        }
 
         private void Test()
         {
