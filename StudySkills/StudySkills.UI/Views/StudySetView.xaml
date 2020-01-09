@@ -3,10 +3,216 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:StudySkills.UI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800" Background="{StaticResource Background}">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="560"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0 0 1 0" BorderBrush="{StaticResource BackSecondary}"/>
+        <!-- Select Study Set Menu -->
+        <ScrollViewer Grid.Column="0"
+                      Width="240"
+                      Style="{DynamicResource SelectStudySetScrollViewer}">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">8</sys:Double>
+            </ScrollViewer.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="AddNewStudySet"
+                        Grid.Row="0"
+                        Width="210"
+                        Height="35"
+                        Margin="10 20 0 15"
+                        Padding="-35 -5 0 0"
+                        Content="+ New Study Set"
+                        FontSize="20"
+                        Style="{StaticResource AddNewButton}"/>
+                <ListBox x:Name="StudySets"
+                         Grid.Row="1"
+                         SelectionMode="Single"
+                         Style="{StaticResource SelectStudySetListBox}"/>
+            </Grid>
+        </ScrollViewer>
+        <!-- Study Set View -->
+        <ScrollViewer Grid.Column="1"
+                      Width="560"
+                      Style="{StaticResource SelectStudySetScrollViewer}">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
+            </ScrollViewer.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Margin="0 15 0 0"
+                           Text="Study Set 1"
+                           FontSize="40"
+                           Foreground="{StaticResource FontPrimary}"
+                           HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <Button x:Name="Study"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/StudyIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Study"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Flashcards"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/FlashcardsIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Flashcards"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Match"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/MatchIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Match"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Quiz"
+                            Style="{StaticResource ActivityButton}">
+                        <StackPanel Margin="0 15 0 0">
+                            <Image Source="../Resources/Images/QuizIcon.png"
+                                   Height="40"
+                                   Width="40"/>
+                            <TextBlock Text="Quiz"
+                                       FontSize="16"
+                                       TextAlignment="Center"/>
+                            <Rectangle Fill="{StaticResource Highlight}"
+                                       Width="85"
+                                       Height="5"
+                                       Margin="0 3 0 0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <Slider x:Name="SelectTerms"
+                        Grid.Row="2"
+                        Margin="0 -26 0 0"
+                        Width="480"
+                        Height="30"
+                        Minimum="0"
+                        Maximum="1"
+                        IsSnapToTickEnabled="True"
+                        TickFrequency="1"
+                        Style="{StaticResource SelectTermsSlider}"/>
+                <Button x:Name="AddNewTerm"
+                        Grid.Row="3"
+                        Width="200"
+                        Height="30"
+                        Margin="0 -16 0 0"
+                        Padding="0"
+                        Content="+ Add New Term"
+                        FontSize="17"
+                        Style="{StaticResource AddNewButton}"/>
+                <ListBox x:Name="Terms"
+                         Grid.Row="4"
+                         SelectionMode="Multiple"
+                         Style="{StaticResource SelectTermListBox}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Margin="10 5 0 10"
+                                           Text="{Binding Term}"
+                                           FontSize="15"
+                                           Foreground="{StaticResource FontPrimary}"
+                                           TextWrapping="Wrap"/>
+                                <Rectangle Grid.Column="1"
+                                           Margin="5"
+                                           Height="Auto"
+                                           Width="1"
+                                           Fill="{StaticResource FontSecondary}"/>
+                                <TextBlock Grid.Column="2"
+                                           Margin="5 5 5 10"
+                                           Text="{Binding Definition}"
+                                           FontSize="15"
+                                           Foreground="{StaticResource FontSecondary}"
+                                           TextWrapping="Wrap"/>
+                                <Button Name="EditButton"
+                                        Grid.Column="3"
+                                        Height="30"
+                                        Width="30"
+                                        Margin="3"
+                                        Padding="4"
+                                        VerticalAlignment="Top"
+                                        Style="{StaticResource IconButton}"
+                                        Background="Transparent"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},
+                                                             Path=IsMouseOver,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <Button.Content>
+                                        <Image Source="../Resources/Images/EditIcon.png"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Name="DeleteButton"
+                                        Grid.Column="4"
+                                        Height="30"
+                                        Width="30"
+                                        Margin="-5 3 3 3"
+                                        Padding="4"
+                                        VerticalAlignment="Top"
+                                        Style="{StaticResource IconButton}"
+                                        Background="Transparent"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},
+                                                             Path=IsMouseOver,
+                                                             Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <Button.Content>
+                                        <Image Source="../Resources/Images/DeleteIcon.png"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </ScrollViewer>
     </Grid>
+    
 </UserControl>

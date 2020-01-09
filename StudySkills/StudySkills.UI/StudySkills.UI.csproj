@@ -72,6 +72,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Core\Converters\BoolToVisibility.cs" />
+    <Compile Include="Core\Models\StudySet.cs" />
+    <Compile Include="Core\Models\TermDefinitionPair.cs" />
     <Compile Include="Views\StudySetView.xaml.cs">
       <DependentUpon>StudySetView.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -128,10 +143,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\FlashcardsIcon.png" />
-    <Resource Include="Resources\Images\LearnIcon.png" />
+    <Resource Include="Resources\Images\StudyIcon.png" />
     <Resource Include="Resources\Images\MatchIcon.png" />
     <Resource Include="Resources\Images\OptionsIcon.png" />
-    <Resource Include="Resources\Images\TestIcon.png" />
+    <Resource Include="Resources\Images\QuizIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\DeleteIcon.png" />
+    <Resource Include="Resources\Images\EditIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
