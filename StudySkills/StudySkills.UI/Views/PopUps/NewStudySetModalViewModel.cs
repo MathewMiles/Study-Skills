@@ -21,7 +21,14 @@ namespace StudySkills.UI.Views.PopUps
             this.Parent = App.Current.MainWindow;
         }
 
-        public string StudySetName => _studySetName;
+        public string StudySetName 
+        {
+            get { return _studySetName; }
+            set
+            {
+                _studySetName = value;
+            }
+        }
 
         public void Create()
         {

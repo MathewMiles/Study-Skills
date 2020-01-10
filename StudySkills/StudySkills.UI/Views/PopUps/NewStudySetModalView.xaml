@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudySkills.UI.Views.PopUps"
         mc:Ignorable="d"
-        Title="NewStudySetModalView" Height="130" Width="340" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None">
+        Title="NewStudySetModalView" Height="130" Width="340" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner">
     <Grid Background="{StaticResource BackPrimary}">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -39,7 +39,8 @@
                  Grid.Row="1"
                  Width="300"
                  Margin="0 15"
-                 Style="{StaticResource SingleLineTextBox}"/>
+                 Style="{StaticResource SingleLineTextBox}"
+                 Text="Name"/>
         <Button x:Name="Create"
                 Grid.Row="2"
                 Width="300"
