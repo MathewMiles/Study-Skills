@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using System.Windows;
+using System.Windows.Media.Effects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +19,7 @@ namespace StudySkills.UI.Views.PopUps
         {
             _eventAggregator = eventAggregator;
             this.Parent = App.Current.MainWindow;
+            App.Current.MainWindow.Effect = new BlurEffect();
         }
 
         public string StudySetName 
@@ -33,12 +34,13 @@ namespace StudySkills.UI.Views.PopUps
         public void Create()
         {
             _eventAggregator.PublishOnUIThread(new CreateStudySetEvent { Name = StudySetName });
-            this.TryClose();
+            Cancel();
         }
 
         public void Cancel()
         {
             this.TryClose();
+            App.Current.MainWindow.Effect = null;
         }
     }
 }

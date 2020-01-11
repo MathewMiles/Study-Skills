@@ -43,6 +43,7 @@
         <!-- Study Set View -->
         <ScrollViewer Grid.Column="1"
                       Width="560"
+                      Visibility="{Binding Path=StudySets_SelectedItem, Converter={StaticResource SelectedItemToVisibilityConverter}}"
                       Style="{StaticResource SelectStudySetScrollViewer}">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
@@ -55,9 +56,9 @@
                     <RowDefinition Height="45"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
+                <TextBlock x:Name="SelectedStudySet_Name"
+                           Grid.Row="0"
                            Margin="0 15 0 0"
-                           Text="Study Set 1"
                            FontSize="40"
                            Foreground="{StaticResource FontPrimary}"
                            HorizontalAlignment="Center"/>

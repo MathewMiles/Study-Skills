@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
+    <Compile Include="Core\Converters\SelectedItemToVisibility.cs" />
     <Compile Include="Core\Events\CreateStudySetEvent.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
