@@ -203,7 +203,7 @@
                                         Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},
                                                              Path=IsMouseOver,
                                                              Converter={StaticResource BoolToVisibilityConverter}}"
-                                        cal:Message.Attach="[Event Click] = [Action DeleteTerm(Terms_SelectedIndex)]">
+                                        cal:Message.Attach="[Event Click] = [Action DeleteTerm($dataContext)]">
                                     <Button.Content>
                                         <Image Source="../Resources/Images/DeleteIcon.png"/>
                                     </Button.Content>

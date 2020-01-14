@@ -85,9 +85,9 @@ namespace StudySkills.UI.Views
         #endregion
 
         #region Actions
-        public void DeleteTerm(int index)
+        public void DeleteTerm(TermDefinitionPair term)
         {
-            Terms.RemoveAt(index);
+            Terms.Remove(term);
         }
 
         public void OpenCreateStudySetModal()
