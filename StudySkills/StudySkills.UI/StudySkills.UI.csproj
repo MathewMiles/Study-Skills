@@ -73,8 +73,19 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
+    <Compile Include="Core\Converters\SelectedIndexToVisibility.cs" />
+    <Compile Include="Core\Events\AddTermEvent.cs" />
+    <Compile Include="Core\Events\CreateStudySetEvent.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
+    <Compile Include="Views\PopUps\NewStudySetModalView.xaml.cs">
+      <DependentUpon>NewStudySetModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUps\NewStudySetModalViewModel.cs" />
+    <Compile Include="Views\PopUps\NewTermModalView.xaml.cs">
+      <DependentUpon>NewTermModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUps\NewTermModalViewModel.cs" />
     <Compile Include="Views\StudySetView.xaml.cs">
       <DependentUpon>StudySetView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +139,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUps\NewStudySetModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUps\NewTermModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +174,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\DeleteIcon.png" />
     <Resource Include="Resources\Images\EditIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\XIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,28 +1,117 @@
 ﻿using Caliburn.Micro;
+using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
+using StudySkills.UI.Views.PopUps;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StudySkills.UI.Views
 {
-    public class StudySetViewModel : Screen
+    public class StudySetViewModel : Screen,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>
     {
-        private IEventAggregator _eventAggregator;
-        private List<StudySet> _studySets = new List<StudySet>();
-        private List<TermDefinitionPair> _terms = new List<TermDefinitionPair>();
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IWindowManager _windowManager;
+        private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
+        private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
+        private StudySet _selectedStudySet;
 
         public StudySetViewModel(
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            IWindowManager windowManager)
         {
             _eventAggregator = eventAggregator;
+            _windowManager = windowManager;
+
+            _eventAggregator.Subscribe(this);
             Test();
         }
 
-        public List<StudySet> StudySets => _studySets;
-        public List<TermDefinitionPair> Terms => _terms;
+        #region Properties
+        public ObservableCollection<StudySet> StudySets 
+        {
+            get { return _studySets; }
+            private set 
+            {
+                _studySets = value;
+                NotifyOfPropertyChange(() => StudySets);
+            }
+        }
+
+        public StudySet SelectedStudySet
+        {
+            get { return _selectedStudySet; }
+            set
+            {
+                _selectedStudySet = value;
+                NotifyOfPropertyChange(() => SelectedStudySet);
+            }
+        }
+
+        public ObservableCollection<TermDefinitionPair> Terms
+        {
+            get { return _terms; }
+            private set
+            {
+                _terms = value;
+                NotifyOfPropertyChange(() => Terms);
+            }
+        }
+        #endregion
+
+        #region Private Methods
+        private void AddTerm(string term, string definition)
+        {
+            Terms.Add(new TermDefinitionPair()
+            {
+                Term = term,
+                Definition = definition
+            });
+        }
+
+        private void CreateStudySet(string name)
+        {
+            StudySets.Add(new StudySet()
+            {
+                Name = name,
+                Terms = 0
+            });
+            SelectedStudySet = StudySets.Last();
+        }
+        #endregion
+
+        #region Actions
+        public void DeleteTerm(int index)
+        {
+            Terms.RemoveAt(index);
+        }
+
+        public void OpenCreateStudySetModal()
+        {
+            _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
+        }
+
+        public void OpenNewTermModal()
+        {
+            _windowManager.ShowDialog(new NewTermModalViewModel(_eventAggregator));
+        }
+        #endregion
+
+        #region Handlers
+        public void Handle(CreateStudySetEvent message)
+        {
+            CreateStudySet(message.Name);
+        }
+
+        public void Handle(AddTermEvent message)
+        {
+            AddTerm(message.Term, message.Definition);
+        }
+        #endregion
 
         private void Test()
         {

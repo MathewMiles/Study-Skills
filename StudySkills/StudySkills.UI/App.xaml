@@ -14,8 +14,10 @@
                 <ResourceDictionary Source="Styles/ScrollViewer.xaml" />
                 <ResourceDictionary Source="Styles/ListBox.xaml" />
                 <ResourceDictionary Source="Styles/Slider.xaml" />
+                <ResourceDictionary Source="Styles/TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
+            <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
