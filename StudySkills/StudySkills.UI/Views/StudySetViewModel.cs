@@ -85,6 +85,11 @@ namespace StudySkills.UI.Views
         #endregion
 
         #region Actions
+        public void DeleteTerm(int index)
+        {
+            Terms.RemoveAt(index);
+        }
+
         public void OpenCreateStudySetModal()
         {
             _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
@@ -110,7 +115,7 @@ namespace StudySkills.UI.Views
 
         private void Test()
         {
-            /*for(int c=1; c<9; c++)
+            for(int c=1; c<9; c++)
             {
                 StudySets.Add(new StudySet()
                 {
@@ -125,7 +130,7 @@ namespace StudySkills.UI.Views
                     Term = $"Term {c} longbitattheendlol",
                     Definition = $"Definition {c}"
                 });
-            }*/
+            }
         }
     }
 }
