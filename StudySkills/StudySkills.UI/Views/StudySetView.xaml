@@ -136,7 +136,7 @@
                         IsSnapToTickEnabled="True"
                         TickFrequency="1"
                         Style="{StaticResource SelectTermsSlider}"/>
-                <Button x:Name="AddNewTerm"
+                <Button x:Name="OpenNewTermModal"
                         Grid.Row="3"
                         Width="200"
                         Height="30"

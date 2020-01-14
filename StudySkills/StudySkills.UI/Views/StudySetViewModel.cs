@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace StudySkills.UI.Views
 {
-    public class StudySetViewModel : Screen,  IHandle<CreateStudySetEvent>
+    public class StudySetViewModel : Screen,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
@@ -64,6 +64,15 @@ namespace StudySkills.UI.Views
         #endregion
 
         #region Private Methods
+        private void AddTerm(string term, string definition)
+        {
+            Terms.Add(new TermDefinitionPair()
+            {
+                Term = term,
+                Definition = definition
+            });
+        }
+
         private void CreateStudySet(string name)
         {
             StudySets.Add(new StudySet()
@@ -80,12 +89,22 @@ namespace StudySkills.UI.Views
         {
             _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
         }
+
+        public void OpenNewTermModal()
+        {
+            _windowManager.ShowDialog(new NewTermModalViewModel(_eventAggregator));
+        }
         #endregion
 
         #region Handlers
         public void Handle(CreateStudySetEvent message)
         {
             CreateStudySet(message.Name);
+        }
+
+        public void Handle(AddTermEvent message)
+        {
+            AddTerm(message.Term, message.Definition);
         }
         #endregion
 
@@ -98,7 +117,7 @@ namespace StudySkills.UI.Views
                     Name = $"Study Set {c} longbitattheendlol",
                     Terms = 120
                 });
-            }*/
+            }
             for (int c = 1; c < 9; c++)
             {
                 Terms.Add(new TermDefinitionPair()
@@ -106,7 +125,7 @@ namespace StudySkills.UI.Views
                     Term = $"Term {c} longbitattheendlol",
                     Definition = $"Definition {c}"
                 });
-            }
+            }*/
         }
     }
 }

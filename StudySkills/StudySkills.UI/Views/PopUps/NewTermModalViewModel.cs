@@ -1,45 +1,52 @@
 ﻿using Caliburn.Micro;
-using System.Windows.Media.Effects;
+using StudySkills.UI.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StudySkills.UI.Core.Events;
 
 namespace StudySkills.UI.Views.PopUps
 {
-    public class NewStudySetModalViewModel : Screen
+    public class NewTermModalViewModel : Screen
     {
-        private string _studySetName;
+        private string _term;
+        private string _definition;
         private readonly IEventAggregator _eventAggregator;
 
-        public NewStudySetModalViewModel(
+        public NewTermModalViewModel(
             IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             this.Parent = App.Current.MainWindow;
         }
 
-        public string StudySetName 
+        public string Term
         {
-            get { return _studySetName; }
+            get { return _term; }
             set
             {
-                _studySetName = value;
+                _term = value;
             }
         }
 
-        public void Create()
+        public string Definition
         {
-            _eventAggregator.PublishOnUIThread(new CreateStudySetEvent { Name = StudySetName });
-            Cancel();
+            get { return _definition; }
+            set
+            {
+                _definition = value;
+            }
+        }
+
+        public void Add()
+        {
+            _eventAggregator.PublishOnUIThread(new AddTermEvent { Term = this.Term, Definition = this.Definition });
         }
 
         public void Cancel()
         {
             this.TryClose();
-            App.Current.MainWindow.Effect = null;
         }
     }
 }
