@@ -20,7 +20,7 @@
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">8</sys:Double>
             </ScrollViewer.Resources>
-            <Grid>
+            <Grid Name="test">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="Auto"/>
@@ -43,7 +43,7 @@
         <!-- Study Set View -->
         <ScrollViewer Grid.Column="1"
                       Width="560"
-                      Visibility="{Binding Path=StudySets_SelectedItem, Converter={StaticResource SelectedItemToVisibilityConverter}}"
+                      Visibility="{Binding ElementName=StudySets, Path=SelectedIndex, Converter={StaticResource SelectedIndexToVisibilityConverter}}"
                       Style="{StaticResource SelectStudySetScrollViewer}">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>

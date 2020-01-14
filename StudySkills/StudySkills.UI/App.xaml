@@ -17,7 +17,7 @@
                 <ResourceDictionary Source="Styles/TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
-            <converters:BoolToVisibility x:Key="SelectedItemToVisibilityConverter"/>
+            <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
