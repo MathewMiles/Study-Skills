@@ -214,6 +214,16 @@
                 </ListBox>
             </Grid>
         </ScrollViewer>
+        <Border Grid.ColumnSpan="2"
+                BorderThickness="0 0 0 100"
+                BorderBrush="{StaticResource Background}"
+                Margin="0 0 0 -101">
+            <Border.Effect>
+                <DropShadowEffect Color="{Binding Color, Source={StaticResource Background}}"
+                                  ShadowDepth="20"
+                                  BlurRadius="100"
+                                  Direction="90"/>
+            </Border.Effect>
+        </Border>
     </Grid>
-    
 </UserControl>
