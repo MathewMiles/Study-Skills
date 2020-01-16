@@ -38,6 +38,7 @@
                 <ListBox x:Name="StudySets"
                          Grid.Row="1"
                          SelectionMode="Single"
+                         Margin="0 0 0 20"
                          Style="{StaticResource SelectStudySetListBox}"/>
             </Grid>
         </ScrollViewer>
@@ -151,6 +152,7 @@
                 <ListBox x:Name="Terms"
                          Grid.Row="4"
                          SelectionMode="Multiple"
+                         Margin="0 0 0 20"
                          Style="{StaticResource SelectTermListBox}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
