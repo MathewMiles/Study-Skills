@@ -31,6 +31,8 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Foreground" Value="{StaticResource FontTertiary}"/>
         <Setter Property="FontSize" Value="15"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -39,6 +41,7 @@
                             BorderThickness="0"
                             Background="{StaticResource Background}">
                         <ScrollViewer Margin="0"
+                                      HorizontalScrollBarVisibility="Disabled"
                         x:Name="PART_ContentHost" />
                     </Border>
                 </ControlTemplate>

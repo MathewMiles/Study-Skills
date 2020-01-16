@@ -51,7 +51,7 @@
             </ScrollViewer.Resources>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="75"/>
+                    <RowDefinition MinHeight="75"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="45"/>
@@ -59,10 +59,12 @@
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="SelectedStudySet_Name"
                            Grid.Row="0"
+                           MaxWidth="480"
                            Margin="0 15 0 0"
                            FontSize="40"
                            Foreground="{StaticResource FontPrimary}"
-                           HorizontalAlignment="Center"/>
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow"/>
                 <StackPanel Grid.Row="1"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
