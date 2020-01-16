@@ -12,6 +12,7 @@ namespace StudySkills.UI.Views.PopUps
     public class NewStudySetModalViewModel : Screen
     {
         private string _studySetName;
+        private bool _hasDefaultValue = true;
         private readonly IEventAggregator _eventAggregator;
 
         public NewStudySetModalViewModel(
@@ -19,6 +20,7 @@ namespace StudySkills.UI.Views.PopUps
         {
             _eventAggregator = eventAggregator;
             this.Parent = App.Current.MainWindow;
+            StudySetName = "Name";
         }
 
         public string StudySetName 
@@ -27,6 +29,7 @@ namespace StudySkills.UI.Views.PopUps
             set
             {
                 _studySetName = value;
+                NotifyOfPropertyChange(() => StudySetName);
             }
         }
 
@@ -40,6 +43,27 @@ namespace StudySkills.UI.Views.PopUps
         {
             this.TryClose();
             App.Current.MainWindow.Effect = null;
+        }
+
+        public void StudySetName_GotFocus()
+        {
+            if (_hasDefaultValue)
+            {
+                StudySetName = "";
+            }
+        }
+
+        public void StudySetName_LostFocus()
+        {
+            if (StudySetName == "")
+            {
+                StudySetName = "Name";
+                _hasDefaultValue = true;
+            }
+            else
+            {
+                _hasDefaultValue = false;
+            }
         }
     }
 }
