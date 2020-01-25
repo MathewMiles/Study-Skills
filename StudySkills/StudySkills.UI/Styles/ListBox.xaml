@@ -57,7 +57,7 @@
                                         <Setter TargetName="Border" Property="Background" Value="{StaticResource Highlight}"/>
                                         <Setter TargetName="Border" Property="Effect">
                                             <Setter.Value>
-                                                <DropShadowEffect BlurRadius="30" ShadowDepth="0" Color="{Binding Color, Source={StaticResource Highlight}}"/>
+                                                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="{Binding Color, Source={StaticResource Highlight}}"/>
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>

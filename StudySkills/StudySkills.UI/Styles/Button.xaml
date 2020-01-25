@@ -53,7 +53,8 @@
         <Setter Property="Margin" Value="8 -10 8 0"/>
         <Setter Property="Height" Value="85"/>
         <Setter Property="Width" Value="85"/>
-        <Setter Property="Foreground" Value="{StaticResource FontPrimary}"/>
+        <Setter Property="Opacity" Value=".87"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -70,9 +71,9 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <!--<Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource FontPrimary}"/>
-                        </Trigger>-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="1"/>
+                        </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Opacity" Value=".58"/>
                         </Trigger>

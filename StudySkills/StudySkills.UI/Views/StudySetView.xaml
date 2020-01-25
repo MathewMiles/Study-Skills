@@ -81,7 +81,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="Flashcards"
@@ -96,7 +97,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="Match"
@@ -111,7 +113,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="Quiz"
@@ -126,7 +129,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
