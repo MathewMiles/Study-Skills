@@ -79,7 +79,6 @@ namespace StudySkills.UI.Views
                 Definition = definition
             });
             StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms++;
-            //UpdateStudySet(StudySets.IndexOf(SelectedStudySet));
         }
 
         private void CreateStudySet(string name)
@@ -130,11 +129,14 @@ namespace StudySkills.UI.Views
 
         private void SaveTerms(int index)
         {
-            using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets", $"{StudySets[index].FileName}.json"), false))
-                using (JsonWriter writer = new JsonTextWriter(sw))
-                {
-                    serializer.Serialize(writer, Terms);
-                }
+            if (index >= 0)
+            {
+                using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets", $"{StudySets[index].FileName}.json"), false))
+                    using (JsonWriter writer = new JsonTextWriter(sw))
+                    {
+                        serializer.Serialize(writer, Terms);
+                    }
+            }
         }
         #endregion
 
@@ -146,7 +148,10 @@ namespace StudySkills.UI.Views
 
         public void LoadTerms(SelectionChangedEventArgs e)
         {
-            SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
+            if (e.RemovedItems.Count > 0)
+            {
+                SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
+            }
             if (File.Exists(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
                 using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
                     using (JsonReader reader = new JsonTextReader(sr))
