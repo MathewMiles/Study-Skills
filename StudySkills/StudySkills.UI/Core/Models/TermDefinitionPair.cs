@@ -1,14 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace StudySkills.UI.Core.Models
 {
-    public class TermDefinitionPair
+    public class TermDefinitionPair : INotifyPropertyChanged
     {
-        public string Term { get; set; }
-        public string Definition { get; set; }
+        private string _term;
+        private string _definition;
+
+        public string Term
+        {
+            get { return _term; }
+            set
+            {
+                if (_term != value)
+                {
+                    _term = value;
+                    OnPropertyChanged("Term");
+                }
+            }
+        }
+        public string Definition
+        {
+            get { return _definition; }
+            set
+            {
+                if (_definition != value)
+                {
+                    _definition = value;
+                    OnPropertyChanged("Definition");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -39,7 +39,8 @@
                          Grid.Row="1"
                          SelectionMode="Single"
                          Margin="0 0 0 20"
-                         Style="{StaticResource SelectStudySetListBox}"/>
+                         Style="{StaticResource SelectStudySetListBox}"
+                         cal:Message.Attach="[Event SelectionChanged] = [Action LoadTerms($eventArgs)]"/>
             </Grid>
         </ScrollViewer>
         <!-- Study Set View -->

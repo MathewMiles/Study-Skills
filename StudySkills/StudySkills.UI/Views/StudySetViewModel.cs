@@ -9,10 +9,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace StudySkills.UI.Views
 {
-    public class StudySetViewModel : Screen, INotifyPropertyChanged,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>
+    public class StudySetViewModel : Screen, INotifyPropertyChanged,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>, IHandle<AppClosingEvent>
     {
         #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
@@ -78,7 +79,7 @@ namespace StudySkills.UI.Views
                 Definition = definition
             });
             StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms++;
-            UpdateStudySet(StudySets.IndexOf(SelectedStudySet));
+            //UpdateStudySet(StudySets.IndexOf(SelectedStudySet));
         }
 
         private void CreateStudySet(string name)
@@ -86,7 +87,8 @@ namespace StudySkills.UI.Views
             StudySets.Add(new StudySet()
             {
                 Name = name,
-                Terms = 0
+                Terms = 0,
+                FileName = Guid.NewGuid()
             });
             SelectedStudySet = StudySets.Last();
             SaveStudySets();
@@ -94,7 +96,17 @@ namespace StudySkills.UI.Views
 
         private void LoadStudySets()
         {
-            if(File.Exists(Path.Combine(filePath, "Study Sets.json")))
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
+            if (!Directory.Exists(Path.Combine(filePath, "Study Sets")))
+            {
+                Directory.CreateDirectory(Path.Combine(filePath, "Study Sets"));
+            }
+
+            if (File.Exists(Path.Combine(filePath, "Study Sets.json")))
                 using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets.json")))
                     using (JsonReader reader = new JsonTextReader(sr))
                     {
@@ -109,28 +121,20 @@ namespace StudySkills.UI.Views
 
         private void SaveStudySets()
         {
-            if (!Directory.Exists(filePath))
-            {
-                Directory.CreateDirectory(filePath);
-            }
             using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets.json"), false))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {
                     serializer.Serialize(writer, StudySets);
                 }
         }
-        
-        private void UpdateStudySet(int index)
-        {
-            StudySets[index] = new StudySet { Name = StudySets[index].Name,
-                                              Terms = StudySets[index].Terms};
-            SelectedStudySet = StudySets[index];
-        }
 
-        private void UpdateTerm(int index)
+        private void SaveTerms(int index)
         {
-            Terms[index] = new TermDefinitionPair{ Term = Terms[index].Term,
-                                                   Definition = Terms[index].Definition};
+            using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets", $"{StudySets[index].FileName}.json"), false))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, Terms);
+                }
         }
         #endregion
 
@@ -138,6 +142,17 @@ namespace StudySkills.UI.Views
         public void DeleteTerm(TermDefinitionPair term)
         {
             Terms.Remove(term);
+        }
+
+        public void LoadTerms(SelectionChangedEventArgs e)
+        {
+            SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
+            if (File.Exists(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
+                using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
+                    using (JsonReader reader = new JsonTextReader(sr))
+                    {
+                        Terms = serializer.Deserialize<ObservableCollection<TermDefinitionPair>>(reader);
+                    }
         }
 
         public void OpenCreateStudySetModal()
@@ -160,6 +175,11 @@ namespace StudySkills.UI.Views
         public void Handle(AddTermEvent message)
         {
             AddTerm(message.Term, message.Definition);
+        }
+
+        public void Handle(AppClosingEvent message)
+        {
+            SaveTerms(StudySets.IndexOf(SelectedStudySet));
         }
         #endregion
     }
