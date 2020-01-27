@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
         xmlns:local="clr-namespace:StudySkills.UI.Views.PopUps"
         mc:Ignorable="d"
         Title="NewStudySetModalView" Height="600" Width="800" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" AllowsTransparency="True" Background="{StaticResource ModalBlock}">
@@ -41,7 +42,7 @@
                  Width="300"
                  Margin="0 15"
                  Style="{StaticResource SingleLineTextBox}"
-                 Text="Name"/>
+                 cal:Message.Attach="[Event GotFocus] = [Action StudySetName_GotFocus()]; [Event LostFocus] = [Action StudySetName_LostFocus()]"/>
         <Button x:Name="Create"
                 Grid.Row="2"
                 Width="300"

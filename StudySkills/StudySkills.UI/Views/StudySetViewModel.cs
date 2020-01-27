@@ -7,18 +7,21 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StudySkills.UI.Views
 {
-    public class StudySetViewModel : Screen,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>
+    public class StudySetViewModel : Screen, INotifyPropertyChanged,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private StudySet _selectedStudySet;
+
+        override public event PropertyChangedEventHandler PropertyChanged;
 
         public StudySetViewModel(
             IEventAggregator eventAggregator,
@@ -38,7 +41,7 @@ namespace StudySkills.UI.Views
             private set 
             {
                 _studySets = value;
-                NotifyOfPropertyChange(() => StudySets);
+                NotifyPropertyChanged();
             }
         }
 
@@ -48,7 +51,7 @@ namespace StudySkills.UI.Views
             set
             {
                 _selectedStudySet = value;
-                NotifyOfPropertyChange(() => SelectedStudySet);
+                NotifyPropertyChanged();
             }
         }
 
@@ -58,7 +61,7 @@ namespace StudySkills.UI.Views
             private set
             {
                 _terms = value;
-                NotifyOfPropertyChange(() => Terms);
+                NotifyPropertyChanged();
             }
         }
         #endregion
@@ -71,6 +74,8 @@ namespace StudySkills.UI.Views
                 Term = term,
                 Definition = definition
             });
+            StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms++;
+            UpdateStudySet(StudySets.IndexOf(SelectedStudySet));
         }
 
         private void CreateStudySet(string name)
@@ -82,12 +87,30 @@ namespace StudySkills.UI.Views
             });
             SelectedStudySet = StudySets.Last();
         }
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        
+        private void UpdateStudySet(int index)
+        {
+            StudySets[index] = new StudySet { Name = StudySets[index].Name,
+                                              Terms = StudySets[index].Terms};
+            SelectedStudySet = StudySets[index];
+        }
+
+        private void UpdateTerm(int index)
+        {
+            Terms[index] = new TermDefinitionPair{ Term = Terms[index].Term,
+                                                   Definition = Terms[index].Definition};
+        }
         #endregion
 
         #region Actions
-        public void DeleteTerm(int index)
+        public void DeleteTerm(TermDefinitionPair term)
         {
-            Terms.RemoveAt(index);
+            Terms.Remove(term);
         }
 
         public void OpenCreateStudySetModal()
@@ -123,7 +146,7 @@ namespace StudySkills.UI.Views
                     Terms = 120
                 });
             }
-            for (int c = 1; c < 9; c++)
+            for (int c = 1; c < 90; c++)
             {
                 Terms.Add(new TermDefinitionPair()
                 {

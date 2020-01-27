@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
         xmlns:local="clr-namespace:StudySkills.UI.Views.PopUps"
         mc:Ignorable="d"
         Title="NewTermModalView" Height="600" Width="800" ShowInTaskbar="False" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" AllowsTransparency="True" Background="{StaticResource ModalBlock}">
@@ -42,14 +43,14 @@
                  Width="300"
                  Margin="0 15"
                  Style="{StaticResource SingleLineTextBox}"
-                 Text="Term"/>
+                 cal:Message.Attach="[Event GotFocus] = [Action Term_GotFocus()]; [Event LostFocus] = [Action Term_LostFocus()]"/>
         <TextBox x:Name="Definition"
                        Grid.Row="2"
                        Width="300"
                        Height="65"
                        Margin="0 0 0 15"
-                       Style="{StaticResource SingleLineTextBox}"
-                       Text="Definition"/>
+                       Style="{StaticResource MultiLineTextBox}"
+                 cal:Message.Attach="[Event GotFocus] = [Action Definition_GotFocus()]; [Event LostFocus] = [Action Definition_LostFocus()]"/>
         <Button x:Name="Add"
                 Grid.Row="3"
                 Width="300"

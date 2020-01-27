@@ -12,6 +12,8 @@ namespace StudySkills.UI.Views.PopUps
     {
         private string _term;
         private string _definition;
+        private bool _termHasDefaultValue = true;
+        private bool _definitionHasDefaultValue = true;
         private readonly IEventAggregator _eventAggregator;
 
         public NewTermModalViewModel(
@@ -19,6 +21,8 @@ namespace StudySkills.UI.Views.PopUps
         {
             _eventAggregator = eventAggregator;
             this.Parent = App.Current.MainWindow;
+            Term = "Term";
+            Definition = "Definition";
         }
 
         public string Term
@@ -27,6 +31,7 @@ namespace StudySkills.UI.Views.PopUps
             set
             {
                 _term = value;
+                NotifyOfPropertyChange(() => Term);
             }
         }
 
@@ -36,17 +41,64 @@ namespace StudySkills.UI.Views.PopUps
             set
             {
                 _definition = value;
+                NotifyOfPropertyChange(() => Definition);
             }
         }
 
         public void Add()
         {
             _eventAggregator.PublishOnUIThread(new AddTermEvent { Term = this.Term, Definition = this.Definition });
+            Term = "Term";
+            _termHasDefaultValue = true;
+            Definition = "Definition";
+            _definitionHasDefaultValue = true;
         }
 
         public void Cancel()
         {
             this.TryClose();
+        }
+
+        public void Term_GotFocus()
+        {
+            if (_termHasDefaultValue)
+            {
+                Term = "";
+            }
+        }
+
+        public void Term_LostFocus()
+        {
+            if (Term == "")
+            {
+                Term = "Term";
+                _termHasDefaultValue = true;
+            }
+            else
+            {
+                _termHasDefaultValue = false;
+            }
+        }
+
+        public void Definition_GotFocus()
+        {
+            if (_definitionHasDefaultValue)
+            {
+                Definition = "";
+            }
+        }
+
+        public void Definition_LostFocus()
+        {
+            if (Definition == "")
+            {
+                Definition = "Definition";
+                _definitionHasDefaultValue = true;
+            }
+            else
+            {
+                _definitionHasDefaultValue = false;
+            }
         }
     }
 }

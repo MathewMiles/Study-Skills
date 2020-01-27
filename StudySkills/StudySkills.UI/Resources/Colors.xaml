@@ -8,7 +8,6 @@
     <SolidColorBrush x:Key="BackPrimary" Color="#252630" Opacity="1"/>
     <SolidColorBrush x:Key="BackSecondary" Color="#3F4053" Opacity="1"/>
     <SolidColorBrush x:Key="Highlight" Color="#3C50FA" Opacity="1"/>
-    <SolidColorBrush x:Key="Glow" Color="#3C50FA" Opacity=".5"/>
     <SolidColorBrush x:Key="Shadow" Color="#000000" Opacity=".5"/>
     <SolidColorBrush x:Key="ModalBlock" Color="#1B1C22" Opacity=".75"/>
 </ResourceDictionary>

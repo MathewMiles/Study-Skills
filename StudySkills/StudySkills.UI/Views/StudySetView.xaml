@@ -38,6 +38,7 @@
                 <ListBox x:Name="StudySets"
                          Grid.Row="1"
                          SelectionMode="Single"
+                         Margin="0 0 0 20"
                          Style="{StaticResource SelectStudySetListBox}"/>
             </Grid>
         </ScrollViewer>
@@ -51,7 +52,7 @@
             </ScrollViewer.Resources>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="75"/>
+                    <RowDefinition MinHeight="75"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="45"/>
@@ -59,10 +60,12 @@
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="SelectedStudySet_Name"
                            Grid.Row="0"
+                           MaxWidth="480"
                            Margin="0 15 0 0"
                            FontSize="40"
                            Foreground="{StaticResource FontPrimary}"
-                           HorizontalAlignment="Center"/>
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow"/>
                 <StackPanel Grid.Row="1"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
@@ -78,7 +81,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="Flashcards"
@@ -93,7 +97,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="Match"
@@ -108,7 +113,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="Quiz"
@@ -123,7 +129,8 @@
                             <Rectangle Fill="{StaticResource Highlight}"
                                        Width="85"
                                        Height="5"
-                                       Margin="0 3 0 0"/>
+                                       Margin="0 3 0 0"
+                                       Opacity="1"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -149,6 +156,7 @@
                 <ListBox x:Name="Terms"
                          Grid.Row="4"
                          SelectionMode="Multiple"
+                         Margin="0 0 0 20"
                          Style="{StaticResource SelectTermListBox}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -203,7 +211,7 @@
                                         Visibility="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},
                                                              Path=IsMouseOver,
                                                              Converter={StaticResource BoolToVisibilityConverter}}"
-                                        cal:Message.Attach="[Event Click] = [Action DeleteTerm(Terms_SelectedIndex)]">
+                                        cal:Message.Attach="[Event Click] = [Action DeleteTerm($dataContext)]">
                                     <Button.Content>
                                         <Image Source="../Resources/Images/DeleteIcon.png"/>
                                     </Button.Content>
@@ -214,6 +222,16 @@
                 </ListBox>
             </Grid>
         </ScrollViewer>
+        <Border Grid.ColumnSpan="2"
+                BorderThickness="0 0 0 100"
+                BorderBrush="{StaticResource Background}"
+                Margin="0 0 0 -101">
+            <Border.Effect>
+                <DropShadowEffect Color="{Binding Color, Source={StaticResource Background}}"
+                                  ShadowDepth="20"
+                                  BlurRadius="100"
+                                  Direction="90"/>
+            </Border.Effect>
+        </Border>
     </Grid>
-    
 </UserControl>
