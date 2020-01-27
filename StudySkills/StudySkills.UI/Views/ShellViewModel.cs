@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StudySkills.UI.Core.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace StudySkills.UI.Views
         public void Close(object sender)
         {
             ((Window)sender).Close();
+        }
+
+        public void NotifyOfClosing()
+        {
+            _eventAggregator.PublishOnUIThread(new AppClosingEvent());
         }
     }
 }
