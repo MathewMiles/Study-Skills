@@ -14,15 +14,13 @@ namespace StudySkills.UI.Core.Classes
     {
         private const string filePath = @"C:\ProgramData\Study Skills";
         private readonly JsonSerializer serializer = new JsonSerializer();
-        private Guid _fileName;
+        private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
+        private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
+        private Guid _currentFile;
 
-        public Guid FileName
-        {
-            get { return _fileName; }
-            set { _fileName = value; }
-        }
+        public ref ObservableCollection<TermDefinitionPair> GetTerms() => ref _terms;
 
-        public ObservableCollection<StudySet> LoadStudySets()
+        public ref ObservableCollection<StudySet> LoadStudySets()
         {
             if (!Directory.Exists(filePath))
             {
@@ -38,28 +36,36 @@ namespace StudySkills.UI.Core.Classes
                 using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets.json")))
                     using (JsonReader reader = new JsonTextReader(sr))
                     {
-                        return serializer.Deserialize<ObservableCollection<StudySet>>(reader);
+                        _studySets = serializer.Deserialize<ObservableCollection<StudySet>>(reader);
                     }
-            return new ObservableCollection<StudySet>();
+            return ref _studySets;
         }
-        public ObservableCollection<TermDefinitionPair> LoadTerms(Guid fileName)
+        public ref ObservableCollection<TermDefinitionPair> LoadTerms(Guid fileName)
         {
-            FileName = fileName;
+            _currentFile = fileName;
             if (File.Exists(Path.Combine(filePath, "Study Sets", $"{fileName}.json")))
                 using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets", $"{fileName}.json")))
                 using (JsonReader reader = new JsonTextReader(sr))
                 {
-                    return serializer.Deserialize<ObservableCollection<TermDefinitionPair>>(reader);
+                    _terms = serializer.Deserialize<ObservableCollection<TermDefinitionPair>>(reader);
                 }
-            return new ObservableCollection<TermDefinitionPair>();
+            return ref _terms;
         }
         public void SaveStudySets()
         {
-
+            using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets.json"), false))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, _studySets);
+                }
         }
         public void SaveTerms()
         {
-
+            using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets", $"{_currentFile}.json"), false))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer, _terms);
+            }
         }
     }
 }

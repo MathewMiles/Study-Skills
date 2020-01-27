@@ -95,7 +95,8 @@ namespace StudySkills.UI.Views
                 FileName = Guid.NewGuid()
             });
             SelectedStudySet = StudySets.Last();
-            SaveStudySets();
+            //SaveStudySets();
+            _fileManager.SaveStudySets();
         }
 
         private void LoadStudySets()
@@ -155,8 +156,8 @@ namespace StudySkills.UI.Views
         {
             if (e.RemovedItems.Count > 0)
             {
-                SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
-                //_fileManager.SaveTerms();
+                //SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
+                _fileManager.SaveTerms();
             }
             /*if (File.Exists(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
                 using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
@@ -191,9 +192,9 @@ namespace StudySkills.UI.Views
 
         public void Handle(AppClosingEvent message)
         {
-            SaveTerms(StudySets.IndexOf(SelectedStudySet));
-            //_fileManager.SaveTerms();
-            //_fileManager.SaveStudySets();
+            //SaveTerms(StudySets.IndexOf(SelectedStudySet));
+            _fileManager.SaveTerms();
+            _fileManager.SaveStudySets();
         }
         #endregion
     }
