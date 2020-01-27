@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StudySkills.UI.Core.Classes;
 using StudySkills.UI.Views;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace StudySkills.UI
 
             _simpleContainer
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>();
+                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IFileManager, FileManager>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)

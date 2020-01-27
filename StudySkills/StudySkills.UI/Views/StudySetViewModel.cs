@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Newtonsoft.Json;
+using StudySkills.UI.Core.Classes;
 using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
 using StudySkills.UI.Views.PopUps;
@@ -18,6 +19,7 @@ namespace StudySkills.UI.Views
         #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
+        private readonly IFileManager _fileManager;
         private readonly JsonSerializer serializer = new JsonSerializer();
         private const string filePath = @"C:\ProgramData\Study Skills";
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
@@ -29,13 +31,16 @@ namespace StudySkills.UI.Views
 
         public StudySetViewModel(
             IEventAggregator eventAggregator,
-            IWindowManager windowManager)
+            IWindowManager windowManager,
+            IFileManager fileManager)
         {
             _eventAggregator = eventAggregator;
             _windowManager = windowManager;
+            _fileManager = fileManager;
 
             _eventAggregator.Subscribe(this);
-            LoadStudySets();
+            StudySets = _fileManager.LoadStudySets();
+            //LoadStudySets();
         }
 
         #region Properties
@@ -151,13 +156,15 @@ namespace StudySkills.UI.Views
             if (e.RemovedItems.Count > 0)
             {
                 SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
+                //_fileManager.SaveTerms();
             }
-            if (File.Exists(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
+            /*if (File.Exists(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
                 using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
                     using (JsonReader reader = new JsonTextReader(sr))
                     {
                         Terms = serializer.Deserialize<ObservableCollection<TermDefinitionPair>>(reader);
-                    }
+                    }*/
+            Terms = _fileManager.LoadTerms(SelectedStudySet.FileName);
         }
 
         public void OpenCreateStudySetModal()
@@ -185,6 +192,8 @@ namespace StudySkills.UI.Views
         public void Handle(AppClosingEvent message)
         {
             SaveTerms(StudySets.IndexOf(SelectedStudySet));
+            //_fileManager.SaveTerms();
+            //_fileManager.SaveStudySets();
         }
         #endregion
     }

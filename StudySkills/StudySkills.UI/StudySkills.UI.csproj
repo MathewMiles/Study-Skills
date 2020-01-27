@@ -75,6 +75,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Core\Classes\FileManager.cs" />
+    <Compile Include="Core\Classes\IFileManager.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
     <Compile Include="Core\Converters\SelectedIndexToVisibility.cs" />
     <Compile Include="Core\Events\AddTermEvent.cs" />
