@@ -21,7 +21,7 @@
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">8</sys:Double>
             </ScrollViewer.Resources>
-            <Grid Name="test">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="Auto"/>
@@ -52,11 +52,11 @@
             </ScrollViewer.Resources>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition MinHeight="75"/>
+                    <RowDefinition Height="Auto" MinHeight="75"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="45"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="SelectedStudySet_Name"
                            Grid.Row="0"

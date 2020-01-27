@@ -1,27 +1,30 @@
 ﻿using Caliburn.Micro;
+using Newtonsoft.Json;
 using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
 using StudySkills.UI.Views.PopUps;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudySkills.UI.Views
 {
     public class StudySetViewModel : Screen, INotifyPropertyChanged,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>
     {
+        #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
+        private readonly JsonSerializer serializer = new JsonSerializer();
+        private const string filePath = @"C:\ProgramData\Study Skills";
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private StudySet _selectedStudySet;
 
         override public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
         public StudySetViewModel(
             IEventAggregator eventAggregator,
@@ -31,7 +34,7 @@ namespace StudySkills.UI.Views
             _windowManager = windowManager;
 
             _eventAggregator.Subscribe(this);
-            Test();
+            LoadStudySets();
         }
 
         #region Properties
@@ -86,11 +89,35 @@ namespace StudySkills.UI.Views
                 Terms = 0
             });
             SelectedStudySet = StudySets.Last();
+            SaveStudySets();
+        }
+
+        private void LoadStudySets()
+        {
+            if(File.Exists(Path.Combine(filePath, "Study Sets.json")))
+                using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets.json")))
+                    using (JsonReader reader = new JsonTextReader(sr))
+                    {
+                        StudySets = serializer.Deserialize<ObservableCollection<StudySet>>(reader);
+                    }
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void SaveStudySets()
+        {
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets.json"), false))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, StudySets);
+                }
         }
         
         private void UpdateStudySet(int index)
@@ -135,25 +162,5 @@ namespace StudySkills.UI.Views
             AddTerm(message.Term, message.Definition);
         }
         #endregion
-
-        private void Test()
-        {
-            for(int c=1; c<9; c++)
-            {
-                StudySets.Add(new StudySet()
-                {
-                    Name = $"Study Set {c} longbitattheendlol",
-                    Terms = 120
-                });
-            }
-            for (int c = 1; c < 90; c++)
-            {
-                Terms.Add(new TermDefinitionPair()
-                {
-                    Term = $"Term {c} longbitattheendlol",
-                    Definition = $"Definition {c}"
-                });
-            }
-        }
     }
 }
