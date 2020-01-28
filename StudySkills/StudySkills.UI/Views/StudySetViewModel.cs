@@ -20,8 +20,6 @@ namespace StudySkills.UI.Views
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
         private readonly IFileManager _fileManager;
-        private readonly JsonSerializer serializer = new JsonSerializer();
-        private const string filePath = @"C:\ProgramData\Study Skills";
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private StudySet _selectedStudySet;
@@ -40,7 +38,6 @@ namespace StudySkills.UI.Views
 
             _eventAggregator.Subscribe(this);
             StudySets = _fileManager.LoadStudySets();
-            //LoadStudySets();
         }
 
         #region Properties
@@ -95,54 +92,12 @@ namespace StudySkills.UI.Views
                 FileName = Guid.NewGuid()
             });
             SelectedStudySet = StudySets.Last();
-            //SaveStudySets();
             _fileManager.SaveStudySets();
-        }
-
-        private void LoadStudySets()
-        {
-            if (!Directory.Exists(filePath))
-            {
-                Directory.CreateDirectory(filePath);
-            }
-
-            if (!Directory.Exists(Path.Combine(filePath, "Study Sets")))
-            {
-                Directory.CreateDirectory(Path.Combine(filePath, "Study Sets"));
-            }
-
-            if (File.Exists(Path.Combine(filePath, "Study Sets.json")))
-                using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets.json")))
-                    using (JsonReader reader = new JsonTextReader(sr))
-                    {
-                        StudySets = serializer.Deserialize<ObservableCollection<StudySet>>(reader);
-                    }
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void SaveStudySets()
-        {
-            using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets.json"), false))
-                using (JsonWriter writer = new JsonTextWriter(sw))
-                {
-                    serializer.Serialize(writer, StudySets);
-                }
-        }
-
-        private void SaveTerms(int index)
-        {
-            if (index >= 0)
-            {
-                using (StreamWriter sw = new StreamWriter(Path.Combine(filePath, "Study Sets", $"{StudySets[index].FileName}.json"), false))
-                    using (JsonWriter writer = new JsonTextWriter(sw))
-                    {
-                        serializer.Serialize(writer, Terms);
-                    }
-            }
         }
         #endregion
 
@@ -156,15 +111,8 @@ namespace StudySkills.UI.Views
         {
             if (e.RemovedItems.Count > 0)
             {
-                //SaveTerms(StudySets.IndexOf((StudySet)e.RemovedItems[0]));
                 _fileManager.SaveTerms();
             }
-            /*if (File.Exists(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
-                using (StreamReader sr = new StreamReader(Path.Combine(filePath, "Study Sets", $"{SelectedStudySet.FileName}.json")))
-                    using (JsonReader reader = new JsonTextReader(sr))
-                    {
-                        Terms = serializer.Deserialize<ObservableCollection<TermDefinitionPair>>(reader);
-                    }*/
             Terms = _fileManager.LoadTerms(SelectedStudySet.FileName);
         }
 
@@ -192,7 +140,6 @@ namespace StudySkills.UI.Views
 
         public void Handle(AppClosingEvent message)
         {
-            //SaveTerms(StudySets.IndexOf(SelectedStudySet));
             _fileManager.SaveTerms();
             _fileManager.SaveStudySets();
         }
