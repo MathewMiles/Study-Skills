@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using Newtonsoft.Json;
 using StudySkills.UI.Core.Classes;
 using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
@@ -7,7 +6,6 @@ using StudySkills.UI.Views.PopUps;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -105,6 +103,11 @@ namespace StudySkills.UI.Views
         public void DeleteTerm(TermDefinitionPair term)
         {
             Terms.Remove(term);
+        }
+
+        public void Flashcards()
+        {
+            _eventAggregator.PublishOnUIThread(new SwitchToActivityEvent() { NewActivity = Activity.Flashcards});
         }
 
         public void LoadTerms(SelectionChangedEventArgs e)
