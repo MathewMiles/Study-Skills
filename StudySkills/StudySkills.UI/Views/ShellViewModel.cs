@@ -1,29 +1,27 @@
 ﻿using Caliburn.Micro;
+using StudySkills.UI.Core.Classes;
 using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
 using StudySkills.UI.Views.Activities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace StudySkills.UI.Views
 {
     public class ShellViewModel : Conductor<object>, IHandle<GoBackEvent>, IHandle<SwitchToActivityEvent>
     {
         private readonly IEventAggregator _eventAggregator;
+        private readonly IFileManager _fileManager;
         private StudySetViewModel _studySetVM;
         private FlashcardsViewModel _flashcardsVM;
 
         public ShellViewModel(
             StudySetViewModel studySetVM,
             FlashcardsViewModel flashcardsVM,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            IFileManager fileManager)
         {
             _eventAggregator = eventAggregator;
+            _fileManager = fileManager;
             _studySetVM = studySetVM;
             _flashcardsVM = flashcardsVM;
 
@@ -61,6 +59,7 @@ namespace StudySkills.UI.Views
             switch (message.NewActivity)
             {
                 case Activity.Flashcards:
+                    _flashcardsVM.Terms = _fileManager.GetTerms();
                     ActivateItem(_flashcardsVM);
                     break;
             }

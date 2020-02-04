@@ -75,9 +75,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Core\Behaviors\ScrollIntoViewListBoxBehavior.cs" />
     <Compile Include="Core\Classes\FileManager.cs" />
     <Compile Include="Core\Classes\IFileManager.cs" />
-    <Compile Include="Core\Controls\FlashcardsControl.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
     <Compile Include="Core\Converters\SelectedIndexToVisibility.cs" />
     <Compile Include="Core\Events\AddTermEvent.cs" />
@@ -157,10 +157,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Activities\FlashcardsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +195,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\XIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\NextIcon.png" />
+    <Resource Include="Resources\Images\PreviousIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

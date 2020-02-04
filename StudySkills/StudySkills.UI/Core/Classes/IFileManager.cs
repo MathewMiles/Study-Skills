@@ -10,6 +10,7 @@ namespace StudySkills.UI.Core.Classes
 {
     public interface IFileManager
     {
+        ref ObservableCollection<TermDefinitionPair> GetTerms();
         ref ObservableCollection<StudySet> LoadStudySets();
         ref ObservableCollection<TermDefinitionPair> LoadTerms(Guid fileName);
         void SaveStudySets();

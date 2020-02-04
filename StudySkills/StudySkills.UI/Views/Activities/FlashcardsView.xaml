@@ -4,13 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudySkills.UI.Views.Activities"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:behavior="clr-namespace:StudySkills.UI.Core.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Image x:Key="NextIcon" Source="/Resources/Images/NextIcon.png"/>
+        <Image x:Key="PreviousIcon" Source="/Resources/Images/PreviousIcon.png"/>
+    </UserControl.Resources>
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <ListBox x:Name="Terms"
+                 Grid.Row="1"
+                 Margin="0 -35 0 0"
+                 Style="{StaticResource FlashcardsListBox}">
+            <i:Interaction.Behaviors>
+                <behavior:ScrollIntoViewListBoxBehavior/>
+            </i:Interaction.Behaviors>
+        </ListBox>
+        <Button x:Name="PreviousTerm"
+                Grid.Row="1"
+                Content="{StaticResource PreviousIcon}"
+                Style="{StaticResource NextPreviousButton}"
+                HorizontalAlignment="Left"
+                Padding="0 10 5 10"/>
+        <Button x:Name="NextTerm"
+                Grid.Row="1"
+                Content="{StaticResource NextIcon}"
+                Style="{StaticResource NextPreviousButton}"
+                HorizontalAlignment="Right"
+                Padding="5 10 0 10"/>
         <Border BorderThickness="0"
                 CornerRadius="15">
             <Button x:Name="GoBack"
