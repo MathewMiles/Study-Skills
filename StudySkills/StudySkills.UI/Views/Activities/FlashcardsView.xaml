@@ -13,11 +13,59 @@
         <Image x:Key="PreviousIcon" Source="/Resources/Images/PreviousIcon.png"/>
     </UserControl.Resources>
     <Grid Background="{StaticResource Background}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ListBox x:Name="Terms"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="650"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0 0 1 0" BorderBrush="{StaticResource BackSecondary}"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="GoBack"
+                    Grid.Row="0"
+                    Content="&lt; Go Back"
+                    Margin="10 20 10 0"
+                    Height="35" Width="130"
+                    FontSize="20"
+                    Padding="-20 -3 0 0"
+                    Style="{StaticResource GoBackButton}"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="420"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="PreviousTerm"
+                        Grid.Column="0" Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Content="{StaticResource PreviousIcon}"
+                        Style="{StaticResource NextPreviousButton}"
+                        HorizontalAlignment="Right"
+                        Padding="0 10 5 10"/>
+                <Button x:Name="NextTerm"
+                        Grid.Column="2" Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Content="{StaticResource NextIcon}"
+                        Style="{StaticResource NextPreviousButton}"
+                        HorizontalAlignment="Left"
+                        Padding="5 10 0 10"/>
+            </Grid>
+        </Grid>
+        <!--<ListBox x:Name="Terms"
                  Grid.Row="1"
                  Margin="0 -35 0 0"
                  Style="{StaticResource FlashcardsListBox}">
@@ -46,6 +94,6 @@
                 Width="120"
                 HorizontalAlignment="Left"
                 Style="{StaticResource GoBackButton}"/>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>
