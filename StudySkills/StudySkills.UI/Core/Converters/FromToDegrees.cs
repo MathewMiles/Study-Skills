@@ -1,26 +1,25 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Data;
 
 namespace StudySkills.UI.Core.Converters
 {
-    public class BoolToVisibility : IValueConverter
+    public class FromToDegrees : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if(value is bool)
+            /*if (value is double)
             {
-                if ((bool)value)
-                    return Visibility.Visible;
-            }
-            return Visibility.Hidden;
+                if ((double)value <= 180)
+                    return 180.0;
+                else
+                    return 0.0;
+            }*/
+            return 45.0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if ((Visibility)value == Visibility.Visible)
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
     }
 }

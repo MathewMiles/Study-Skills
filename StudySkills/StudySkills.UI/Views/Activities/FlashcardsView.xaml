@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudySkills.UI.Views.Activities"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             xmlns:behavior="clr-namespace:StudySkills.UI.Core.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800">
     <UserControl.Resources>
@@ -39,6 +38,150 @@
                 <RowDefinition Height="420"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="Study Set 1"
+                       Margin="0 -7 0 0"
+                       Foreground="{StaticResource FontPrimary}"
+                       FontSize="40"
+                       TextAlignment="Center"
+                       TextTrimming="WordEllipsis"
+                       MaxWidth="600"/>
+            <DockPanel Grid.Row="1">
+                <Viewbox>
+                    <Canvas Width="650" Height="420">
+                        <Viewport3D Name="MyAnimatedObject"
+                                    ClipToBounds="True" Width="650" Height="420"
+                                    Canvas.Left="0" Canvas.Top="0">
+                            <Viewport3D.Camera>
+                                <PerspectiveCamera x:Name="myPerspectiveCamera" Position="0,0,-16" LookDirection="0,0,1" 
+                                                   FieldOfView="70" />
+                            </Viewport3D.Camera>
+                            <Viewport3D.Children>
+                                <ModelVisual3D>
+                                    <ModelVisual3D.Content>
+                                        <DirectionalLight Color="#FFFFFF" Direction="0,0,1" />
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                                <ModelVisual3D>
+                                    <ModelVisual3D.Content>
+                                        <Model3DGroup>
+                                            <GeometryModel3D>
+                                                <GeometryModel3D.Geometry>
+                                                    <MeshGeometry3D Positions="-10 -6.6 .001  10 -6.6 .001  -10 6.6 .001  10 6.6 .001"
+                                                                    Normals="0 0 1  0 0 1  0 0 1  0 0 1"
+                                                                    TextureCoordinates="0 1  1 1  0 0  1 0"
+                                                                    TriangleIndices="0 1 2  1 3 2"/>
+                                                </GeometryModel3D.Geometry>
+                                                <GeometryModel3D.Material>
+                                                    <DiffuseMaterial>
+                                                        <DiffuseMaterial.Brush>
+                                                            <VisualBrush>
+                                                                <VisualBrush.Visual>
+                                                                    <Grid x:Name="Back"
+                                                                          Background="{StaticResource FontPrimary}"
+                                                                          Height="400" Width="600">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="*"/>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <TextBlock Grid.Row="1"
+                                                                                   FontSize="70pt"
+                                                                                   Foreground="{StaticResource Background}"
+                                                                                   Text="Definition"
+                                                                                   Margin="0"
+                                                                                   TextAlignment="Center"/>
+                                                                    </Grid>
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </DiffuseMaterial.Brush>
+                                                    </DiffuseMaterial>
+                                                </GeometryModel3D.Material>
+                                                <GeometryModel3D.BackMaterial>
+                                                    <DiffuseMaterial Brush="Transparent"/>
+                                                </GeometryModel3D.BackMaterial>
+                                                <GeometryModel3D.Transform>
+                                                    <RotateTransform3D>
+                                                        <RotateTransform3D.Rotation>
+                                                        <AxisAngleRotation3D Axis="0,0,1" Angle="180" />
+                                                    </RotateTransform3D.Rotation>
+                                                    </RotateTransform3D>
+                                                </GeometryModel3D.Transform>
+                                            </GeometryModel3D>
+                                            <GeometryModel3D>
+                                                <GeometryModel3D.Geometry>
+                                                    <MeshGeometry3D Positions="-10 -6.6 0  10 -6.6 0  -10 6.6 0  10 6.6 0"
+                                                                    Normals="0 0 1  0 0 1  0 0 1  0 0 1"
+                                                                    TextureCoordinates="0 1  1 1  0 0  1 0"
+                                                                    TriangleIndices="0 1 2  1 3 2"/>
+                                                </GeometryModel3D.Geometry>
+                                                <GeometryModel3D.Material>
+                                                    <DiffuseMaterial>
+                                                        <DiffuseMaterial.Brush>
+                                                            <VisualBrush>
+                                                                <VisualBrush.Visual>
+                                                                    <Grid x:Name="Front"
+                                                                          Background="{StaticResource FontPrimary}"
+                                                                          Height="400" Width="600">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="*"/>
+                                                                            <RowDefinition Height="Auto"/>
+                                                                            <RowDefinition Height="*"/>
+                                                                        </Grid.RowDefinitions>
+                                                                        <TextBlock Grid.Row="1"
+                                                                                   FontSize="70pt"
+                                                                                   Foreground="{StaticResource Background}"
+                                                                                   Text="Term"
+                                                                                   Margin="0"
+                                                                                   TextAlignment="Center"/>
+                                                                    </Grid>
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </DiffuseMaterial.Brush>
+                                                    </DiffuseMaterial>
+                                                </GeometryModel3D.Material>
+                                                <GeometryModel3D.BackMaterial>
+                                                    <DiffuseMaterial Brush="Transparent"/>
+                                                </GeometryModel3D.BackMaterial>
+                                                <GeometryModel3D.Transform>
+                                                    <RotateTransform3D>
+                                                        <RotateTransform3D.Rotation>
+                                                            <AxisAngleRotation3D Axis="0,1,0" Angle="180" />
+                                                        </RotateTransform3D.Rotation>
+                                                    </RotateTransform3D>
+                                                </GeometryModel3D.Transform>
+                                            </GeometryModel3D>
+                                            <Model3DGroup.Transform>
+                                                <RotateTransform3D x:Name="rotateTransform" >
+                                                    <RotateTransform3D.Rotation>
+                                                        <AxisAngleRotation3D Axis="0,0,0" Angle="0" />
+                                                    </RotateTransform3D.Rotation>
+                                                </RotateTransform3D>
+                                            </Model3DGroup.Transform>
+                                        </Model3DGroup>
+                                    </ModelVisual3D.Content>
+                                </ModelVisual3D>
+                            </Viewport3D.Children>
+                            <Viewport3D.Triggers>
+                                <EventTrigger RoutedEvent="Grid.MouseLeftButtonDown">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <Rotation3DAnimation x:Name="animation"
+                                                                 Storyboard.TargetName="rotateTransform" 
+                                                                 Storyboard.TargetProperty="Rotation" 
+                                                                 Duration="00:00:00.30">
+                                                <Rotation3DAnimation.By>
+                                                    <AxisAngleRotation3D Axis="1,0,0" Angle="-180" />
+                                                </Rotation3DAnimation.By>
+                                            </Rotation3DAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Viewport3D.Triggers>
+                        </Viewport3D>
+                    </Canvas>
+                </Viewbox>
+            </DockPanel>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

@@ -18,6 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
             <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
+            <converters:FromToDegrees x:Key="FromToDegreesConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
