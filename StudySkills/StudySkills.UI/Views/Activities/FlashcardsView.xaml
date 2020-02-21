@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudySkills.UI.Views.Activities"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800">
     <UserControl.Resources>
@@ -152,11 +153,14 @@
                                                 </GeometryModel3D.Transform>
                                             </GeometryModel3D>
                                             <Model3DGroup.Transform>
-                                                <RotateTransform3D x:Name="rotateTransform" >
-                                                    <RotateTransform3D.Rotation>
-                                                        <AxisAngleRotation3D Axis="0,0,0" Angle="0" />
-                                                    </RotateTransform3D.Rotation>
-                                                </RotateTransform3D>
+                                                <Transform3DGroup>
+                                                    <RotateTransform3D x:Name="rotateTransform" >
+                                                        <RotateTransform3D.Rotation>
+                                                            <AxisAngleRotation3D Axis="0,0,0" Angle="0" />
+                                                        </RotateTransform3D.Rotation>
+                                                    </RotateTransform3D>
+                                                    <TranslateTransform3D x:Name="translateTransform" OffsetX="0" OffsetY="0" OffsetZ="0" />
+                                                </Transform3DGroup>
                                             </Model3DGroup.Transform>
                                         </Model3DGroup>
                                     </ModelVisual3D.Content>
@@ -198,14 +202,46 @@
                         Content="{StaticResource PreviousIcon}"
                         Style="{StaticResource NextPreviousButton}"
                         HorizontalAlignment="Right"
-                        Padding="0 10 5 10"/>
+                        Padding="0 10 5 10">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="translateTransform" 
+                                                     Storyboard.TargetProperty="OffsetX"
+                                                     Duration="00:00:00.21">
+                                        <LinearDoubleKeyFrame Value="-20" KeyTime="00:00:00.10"/>
+                                        <DiscreteDoubleKeyFrame Value="20" KeyTime="00:00:00.11"/>
+                                        <LinearDoubleKeyFrame Value="0" KeyTime="00:00:00.21"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
                 <Button x:Name="NextTerm"
                         Grid.Column="2" Grid.Row="0"
                         Grid.RowSpan="2"
                         Content="{StaticResource NextIcon}"
                         Style="{StaticResource NextPreviousButton}"
                         HorizontalAlignment="Left"
-                        Padding="5 10 0 10"/>
+                        Padding="5 10 0 10">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="translateTransform" 
+                                                     Storyboard.TargetProperty="OffsetX"
+                                                     Duration="00:00:00.21">
+                                        <LinearDoubleKeyFrame Value="20" KeyTime="00:00:00.10"/>
+                                        <DiscreteDoubleKeyFrame Value="-20" KeyTime="00:00:00.11"/>
+                                        <LinearDoubleKeyFrame Value="0" KeyTime="00:00:00.21"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
             </Grid>
         </Grid>
         <!--<ListBox x:Name="Terms"

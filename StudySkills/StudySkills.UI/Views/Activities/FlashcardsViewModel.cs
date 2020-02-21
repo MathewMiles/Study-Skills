@@ -2,6 +2,7 @@
 using StudySkills.UI.Core.Classes;
 using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -59,10 +60,11 @@ namespace StudySkills.UI.Views.Activities
 
         public void NextTerm()
         {
-            if (Terms.IndexOf(SelectedTerm) != Terms.Count - 1)
+            /*if (Terms.IndexOf(SelectedTerm) != Terms.Count - 1)
             {
                 SelectedTerm = Terms.ElementAt(Terms.IndexOf(SelectedTerm) + 1);
-            }
+            }*/
+            Console.WriteLine("works");
         }
 
         public void PreviousTerm()
