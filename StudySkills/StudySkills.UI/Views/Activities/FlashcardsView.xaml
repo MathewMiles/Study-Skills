@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudySkills.UI.Views.Activities"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="800">
@@ -86,10 +87,10 @@
                                                                             <RowDefinition Height="Auto"/>
                                                                             <RowDefinition Height="*"/>
                                                                         </Grid.RowDefinitions>
-                                                                        <TextBlock Grid.Row="1"
+                                                                        <TextBlock Text="{Binding BackSide}"
+                                                                                   Grid.Row="1"
                                                                                    FontSize="70pt"
                                                                                    Foreground="{StaticResource Background}"
-                                                                                   Text="Definition"
                                                                                    Margin="0"
                                                                                    TextAlignment="Center"/>
                                                                     </Grid>
@@ -104,8 +105,8 @@
                                                 <GeometryModel3D.Transform>
                                                     <RotateTransform3D>
                                                         <RotateTransform3D.Rotation>
-                                                        <AxisAngleRotation3D Axis="0,0,1" Angle="180" />
-                                                    </RotateTransform3D.Rotation>
+                                                            <AxisAngleRotation3D Axis="0,0,1" Angle="180" />
+                                                        </RotateTransform3D.Rotation>
                                                     </RotateTransform3D>
                                                 </GeometryModel3D.Transform>
                                             </GeometryModel3D>
@@ -129,10 +130,10 @@
                                                                             <RowDefinition Height="Auto"/>
                                                                             <RowDefinition Height="*"/>
                                                                         </Grid.RowDefinitions>
-                                                                        <TextBlock Grid.Row="1"
+                                                                        <TextBlock Text="{Binding FrontSide}"
+                                                                                   Grid.Row="1"
                                                                                    FontSize="70pt"
                                                                                    Foreground="{StaticResource Background}"
-                                                                                   Text="Term"
                                                                                    Margin="0"
                                                                                    TextAlignment="Center"/>
                                                                     </Grid>
@@ -244,35 +245,5 @@
                 </Button>
             </Grid>
         </Grid>
-        <!--<ListBox x:Name="Terms"
-                 Grid.Row="1"
-                 Margin="0 -35 0 0"
-                 Style="{StaticResource FlashcardsListBox}">
-            <i:Interaction.Behaviors>
-                <behavior:ScrollIntoViewListBoxBehavior/>
-            </i:Interaction.Behaviors>
-        </ListBox>
-        <Button x:Name="PreviousTerm"
-                Grid.Row="1"
-                Content="{StaticResource PreviousIcon}"
-                Style="{StaticResource NextPreviousButton}"
-                HorizontalAlignment="Left"
-                Padding="0 10 5 10"/>
-        <Button x:Name="NextTerm"
-                Grid.Row="1"
-                Content="{StaticResource NextIcon}"
-                Style="{StaticResource NextPreviousButton}"
-                HorizontalAlignment="Right"
-                Padding="5 10 0 10"/>
-        <Border BorderThickness="0"
-                CornerRadius="15">
-            <Button x:Name="GoBack"
-                Grid.Column="0"
-                Content="&lt; Go Back"
-                Margin="5 5 0 0"
-                Width="120"
-                HorizontalAlignment="Left"
-                Style="{StaticResource GoBackButton}"/>
-        </Border>-->
     </Grid>
 </UserControl>

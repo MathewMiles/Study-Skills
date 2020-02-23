@@ -15,7 +15,8 @@ namespace StudySkills.UI.Views.Activities
         private readonly IEventAggregator _eventAggregator;
         private readonly IFileManager _fileManager;
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
-        private TermDefinitionPair _selectedTerm;
+        private int _selectedTermIndex;
+        private string _frontSide, _backSide;
 
         override public event PropertyChangedEventHandler PropertyChanged;
 
@@ -25,17 +26,39 @@ namespace StudySkills.UI.Views.Activities
             set
             {
                 _terms = value;
-                SelectedTerm = _terms[0];
+                SelectedTermIndex = 0;
+                FrontSide = _terms[0].Term;
+                BackSide = _terms[0].Definition;
                 NotifyPropertyChanged();
             }
         }
 
-        public TermDefinitionPair SelectedTerm
+        public int SelectedTermIndex
         {
-            get { return _selectedTerm; }
+            get { return _selectedTermIndex; }
             set
             {
-                _selectedTerm = value;
+                _selectedTermIndex = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string FrontSide
+        {
+            get { return _frontSide; }
+            set
+            {
+                _frontSide = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string BackSide
+        {
+            get { return _backSide; }
+            set
+            {
+                _backSide = value;
                 NotifyPropertyChanged();
             }
         }
@@ -60,18 +83,21 @@ namespace StudySkills.UI.Views.Activities
 
         public void NextTerm()
         {
-            /*if (Terms.IndexOf(SelectedTerm) != Terms.Count - 1)
+            if(SelectedTermIndex != Terms.Count - 1)
             {
-                SelectedTerm = Terms.ElementAt(Terms.IndexOf(SelectedTerm) + 1);
-            }*/
-            Console.WriteLine("works");
+                SelectedTermIndex++;
+                FrontSide = Terms[SelectedTermIndex].Term;
+                BackSide = Terms[SelectedTermIndex].Definition;
+            }
         }
 
         public void PreviousTerm()
         {
-            if(Terms.IndexOf(SelectedTerm) != 0)
+            if (SelectedTermIndex != 0)
             {
-                SelectedTerm = Terms.ElementAt(Terms.IndexOf(SelectedTerm) - 1);
+                SelectedTermIndex--;
+                FrontSide = Terms[SelectedTermIndex].Term;
+                BackSide = Terms[SelectedTermIndex].Definition;
             }
         }
     }
