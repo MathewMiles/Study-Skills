@@ -1,20 +1,21 @@
 ﻿using System;
+using System.Windows.Media.Media3D;
 using System.Windows.Data;
 
 namespace StudySkills.UI.Core.Converters
 {
-    public class FromToDegrees : IValueConverter
+    public class QuaternionFlip : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            /*if (value is double)
+            if (value is Quaternion)
             {
-                if ((double)value <= 180)
-                    return 180.0;
+                if (((Quaternion)value).Angle == 0)
+                    return new Quaternion(1, 0, 0, 0);
                 else
-                    return 0.0;
-            }*/
-            return 45.0;
+                    return new Quaternion(0, 0, 0, 1);
+            }
+            return new Quaternion(0, 0, 0, 1);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -157,7 +157,7 @@
                                                 <Transform3DGroup>
                                                     <RotateTransform3D x:Name="rotateTransform" >
                                                         <RotateTransform3D.Rotation>
-                                                            <AxisAngleRotation3D Axis="0,0,0" Angle="0" />
+                                                            <QuaternionRotation3D Quaternion="0, 0, 0, 1"/>
                                                         </RotateTransform3D.Rotation>
                                                     </RotateTransform3D>
                                                     <TranslateTransform3D x:Name="translateTransform" OffsetX="0" OffsetY="0" OffsetZ="0" />
@@ -175,9 +175,9 @@
                                                                  Storyboard.TargetName="rotateTransform" 
                                                                  Storyboard.TargetProperty="Rotation" 
                                                                  Duration="00:00:00.30">
-                                                <Rotation3DAnimation.By>
-                                                    <AxisAngleRotation3D Axis="1,0,0" Angle="-180" />
-                                                </Rotation3DAnimation.By>
+                                                <Rotation3DAnimation.To>
+                                                    <QuaternionRotation3D Quaternion="{Binding ElementName=rotateTransform, Path=Rotation.Quaternion, Converter={StaticResource QuaternionFlipConverter}}"/>
+                                                </Rotation3DAnimation.To>
                                             </Rotation3DAnimation>
                                         </Storyboard>
                                     </BeginStoryboard>
