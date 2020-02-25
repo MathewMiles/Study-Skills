@@ -2,10 +2,8 @@
 using StudySkills.UI.Core.Classes;
 using StudySkills.UI.Core.Events;
 using StudySkills.UI.Core.Models;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace StudySkills.UI.Views.Activities
@@ -17,8 +15,17 @@ namespace StudySkills.UI.Views.Activities
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private int _selectedTermIndex;
         private string _frontSide, _backSide;
+        private Fraction _cardNumber;
 
         override public event PropertyChangedEventHandler PropertyChanged;
+
+        public FlashcardsViewModel(
+            IEventAggregator eventAggregator,
+            IFileManager fileManager)
+        {
+            _eventAggregator = eventAggregator;
+            _fileManager = fileManager;
+        }
 
         public ObservableCollection<TermDefinitionPair> Terms
         {
@@ -27,6 +34,7 @@ namespace StudySkills.UI.Views.Activities
             {
                 _terms = value;
                 SelectedTermIndex = 0;
+                CardNumber = new Fraction(1, _terms.Count);
                 FrontSide = _terms[0].Term;
                 BackSide = _terms[0].Definition;
                 NotifyPropertyChanged();
@@ -63,12 +71,14 @@ namespace StudySkills.UI.Views.Activities
             }
         }
 
-        public FlashcardsViewModel(
-            IEventAggregator eventAggregator,
-            IFileManager fileManager)
+        public Fraction CardNumber
         {
-            _eventAggregator = eventAggregator;
-            _fileManager = fileManager;
+            get { return _cardNumber; }
+            set
+            {
+                _cardNumber = value;
+                NotifyPropertyChanged();
+            }
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -86,6 +96,8 @@ namespace StudySkills.UI.Views.Activities
             if(SelectedTermIndex != Terms.Count - 1)
             {
                 SelectedTermIndex++;
+                CardNumber.Numerator++;
+                NotifyPropertyChanged("CardNumber");
                 FrontSide = Terms[SelectedTermIndex].Term;
                 BackSide = Terms[SelectedTermIndex].Definition;
             }
@@ -96,6 +108,8 @@ namespace StudySkills.UI.Views.Activities
             if (SelectedTermIndex != 0)
             {
                 SelectedTermIndex--;
+                CardNumber.Numerator--;
+                NotifyPropertyChanged("CardNumber");
                 FrontSide = Terms[SelectedTermIndex].Term;
                 BackSide = Terms[SelectedTermIndex].Definition;
             }
