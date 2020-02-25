@@ -16,6 +16,7 @@ namespace StudySkills.UI.Views.Activities
         private int _selectedTermIndex;
         private string _frontSide, _backSide;
         private Fraction _cardNumber;
+        private bool _canGoNext = true, _canGoPrevious;
 
         override public event PropertyChangedEventHandler PropertyChanged;
 
@@ -81,6 +82,26 @@ namespace StudySkills.UI.Views.Activities
             }
         }
 
+        public bool CanGoNext
+        {
+            get { return _canGoNext; }
+            set
+            {
+                _canGoNext = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool CanGoPrevious
+        {
+            get { return _canGoPrevious; }
+            set
+            {
+                _canGoPrevious = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -93,26 +114,30 @@ namespace StudySkills.UI.Views.Activities
 
         public void NextTerm()
         {
-            if(SelectedTermIndex != Terms.Count - 1)
+            SelectedTermIndex++;
+            CardNumber.Numerator++;
+            NotifyPropertyChanged("CardNumber");
+            if (SelectedTermIndex == Terms.Count - 1)
             {
-                SelectedTermIndex++;
-                CardNumber.Numerator++;
-                NotifyPropertyChanged("CardNumber");
-                FrontSide = Terms[SelectedTermIndex].Term;
-                BackSide = Terms[SelectedTermIndex].Definition;
+                CanGoNext = false;
             }
+            CanGoPrevious = true;
+            FrontSide = Terms[SelectedTermIndex].Term;
+            BackSide = Terms[SelectedTermIndex].Definition;
         }
 
         public void PreviousTerm()
         {
-            if (SelectedTermIndex != 0)
+            SelectedTermIndex--;
+            CardNumber.Numerator--;
+            NotifyPropertyChanged("CardNumber");
+            if (SelectedTermIndex == 0)
             {
-                SelectedTermIndex--;
-                CardNumber.Numerator--;
-                NotifyPropertyChanged("CardNumber");
-                FrontSide = Terms[SelectedTermIndex].Term;
-                BackSide = Terms[SelectedTermIndex].Definition;
+                CanGoPrevious = false;
             }
+            CanGoNext = true;
+            FrontSide = Terms[SelectedTermIndex].Term;
+            BackSide = Terms[SelectedTermIndex].Definition;
         }
     }
 }

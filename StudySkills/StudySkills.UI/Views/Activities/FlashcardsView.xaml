@@ -203,7 +203,8 @@
                         Content="{StaticResource PreviousIcon}"
                         Style="{StaticResource NextPreviousButton}"
                         HorizontalAlignment="Right"
-                        Padding="0 10 5 10">
+                        Padding="0 10 5 10"
+                        Visibility="{Binding CanGoPrevious, Converter={StaticResource BoolToVisibilityConverter}}">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="Button.Click">
                             <BeginStoryboard>
@@ -246,7 +247,8 @@
                         Content="{StaticResource NextIcon}"
                         Style="{StaticResource NextPreviousButton}"
                         HorizontalAlignment="Left"
-                        Padding="5 10 0 10">
+                        Padding="5 10 0 10"
+                        Visibility="{Binding CanGoNext, Converter={StaticResource BoolToVisibilityConverter}}">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="Button.Click">
                             <BeginStoryboard>
