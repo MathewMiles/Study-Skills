@@ -33,6 +33,19 @@
                     FontSize="20"
                     Padding="-20 -3 0 0"
                     Style="{StaticResource GoBackButton}"/>
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal">
+                <Slider x:Name="TermFirst"
+                        Style="{StaticResource OptionTermsSlider}"
+                        Margin="10 0 0 0"
+                        VerticalAlignment="Bottom"
+                        Value="1"/>
+                <TextBlock Text="Term First"
+                           Foreground="{StaticResource FontTertiary}"
+                           FontSize="18"
+                           VerticalAlignment="Bottom"
+                           Margin="5 0 0 1"/>
+            </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -220,7 +233,7 @@
                                                      Storyboard.TargetProperty="Rotation"
                                                      Duration="00:00:00.0">
                                         <Rotation3DAnimation.To>
-                                            <QuaternionRotation3D Quaternion="0, 0, 0, 1"/>
+                                            <QuaternionRotation3D Quaternion="{Binding Path=Value, ElementName=TermFirst, Converter={StaticResource TermFirstToQuaternionConverter}}"/>
                                         </Rotation3DAnimation.To>
                                     </Rotation3DAnimation>
                                 </Storyboard>
@@ -264,7 +277,7 @@
                                                      Storyboard.TargetProperty="Rotation"
                                                      Duration="00:00:00.0">
                                         <Rotation3DAnimation.To>
-                                            <QuaternionRotation3D Quaternion="0, 0, 0, 1"/>
+                                            <QuaternionRotation3D Quaternion="{Binding Path=Value, ElementName=TermFirst, Converter={StaticResource TermFirstToQuaternionConverter}}"/>
                                         </Rotation3DAnimation.To>
                                     </Rotation3DAnimation>
                                 </Storyboard>

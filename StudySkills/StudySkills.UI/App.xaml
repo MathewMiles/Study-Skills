@@ -20,6 +20,7 @@
             <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
             <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
             <converters:QuaternionFlip x:Key="QuaternionFlipConverter"/>
+            <converters:TermFirstToQuaternion x:Key="TermFirstToQuaternionConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
