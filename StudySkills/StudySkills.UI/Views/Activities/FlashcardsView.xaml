@@ -223,15 +223,15 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="translateTransform" 
-                                                     Storyboard.TargetProperty="OffsetX"
-                                                     Duration="00:00:00.21">
-                                        <LinearDoubleKeyFrame Value="-20" KeyTime="00:00:00.10"/>
-                                        <DiscreteDoubleKeyFrame Value="20" KeyTime="00:00:00.11"/>
-                                        <LinearDoubleKeyFrame Value="0" KeyTime="00:00:00.21"/>
+                                                                   Storyboard.TargetProperty="OffsetX"
+                                                                   Duration="00:00:00.25">
+                                        <DiscreteDoubleKeyFrame Value="20" KeyTime="00:00:00"/>
+                                        <LinearDoubleKeyFrame Value="-1" KeyTime="00:00:00.15"/>
+                                        <LinearDoubleKeyFrame Value="0" KeyTime="00:00:00.25"/>
                                     </DoubleAnimationUsingKeyFrames>
                                     <Rotation3DAnimation Storyboard.TargetName="rotateTransform"
-                                                     Storyboard.TargetProperty="Rotation"
-                                                     Duration="00:00:00.0">
+                                                         Storyboard.TargetProperty="Rotation"
+                                                         Duration="00:00:00.0">
                                         <Rotation3DAnimation.To>
                                             <QuaternionRotation3D Quaternion="{Binding Path=Value, ElementName=TermFirst, Converter={StaticResource TermFirstToQuaternionConverter}}"/>
                                         </Rotation3DAnimation.To>
@@ -267,11 +267,11 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="translateTransform" 
-                                                     Storyboard.TargetProperty="OffsetX"
-                                                     Duration="00:00:00.21">
-                                        <LinearDoubleKeyFrame Value="20" KeyTime="00:00:00.10"/>
-                                        <DiscreteDoubleKeyFrame Value="-20" KeyTime="00:00:00.11"/>
-                                        <LinearDoubleKeyFrame Value="0" KeyTime="00:00:00.21"/>
+                                                                   Storyboard.TargetProperty="OffsetX"
+                                                                   Duration="00:00:00.25">
+                                        <DiscreteDoubleKeyFrame Value="-20" KeyTime="00:00:00"/>
+                                        <LinearDoubleKeyFrame Value="1" KeyTime="00:00:00.15"/>
+                                        <LinearDoubleKeyFrame Value="0" KeyTime="00:00:00.25"/>
                                     </DoubleAnimationUsingKeyFrames>
                                     <Rotation3DAnimation Storyboard.TargetName="rotateTransform"
                                                      Storyboard.TargetProperty="Rotation"
