@@ -75,15 +75,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Core\Classes\FileManager.cs" />
-    <Compile Include="Core\Classes\IFileManager.cs" />
+    <Compile Include="Core\Classes\StudySetManager.cs" />
+    <Compile Include="Core\Classes\IStudySetManager.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
+    <Compile Include="Core\Converters\QuaternionFlip.cs" />
     <Compile Include="Core\Converters\SelectedIndexToVisibility.cs" />
+    <Compile Include="Core\Converters\TermFirstToQuaternion.cs" />
     <Compile Include="Core\Events\AddTermEvent.cs" />
     <Compile Include="Core\Events\AppClosingEvent.cs" />
     <Compile Include="Core\Events\CreateStudySetEvent.cs" />
+    <Compile Include="Core\Events\GoBackEvent.cs" />
+    <Compile Include="Core\Events\SwitchToActivityEvent.cs" />
+    <Compile Include="Core\Models\Activity.cs" />
+    <Compile Include="Core\Models\Fraction.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
+    <Compile Include="Views\Activities\FlashcardsView.xaml.cs">
+      <DependentUpon>FlashcardsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activities\FlashcardsViewModel.cs" />
     <Compile Include="Views\PopUps\NewStudySetModalView.xaml.cs">
       <DependentUpon>NewStudySetModalView.xaml</DependentUpon>
     </Compile>
@@ -137,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ScrollViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Activities\FlashcardsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +201,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\XIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\NextIcon.png" />
+    <Resource Include="Resources\Images\PreviousIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

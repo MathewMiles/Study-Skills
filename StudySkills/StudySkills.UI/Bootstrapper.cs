@@ -26,7 +26,7 @@ namespace StudySkills.UI
             _simpleContainer
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
-                .Singleton<IFileManager, FileManager>();
+                .Singleton<IStudySetManager, StudySetManager>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)

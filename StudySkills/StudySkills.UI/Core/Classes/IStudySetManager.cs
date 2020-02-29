@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace StudySkills.UI.Core.Classes
 {
-    public interface IFileManager
+    public interface IStudySetManager
     {
+        string StudySetTitle
+        {
+            get;
+            set;
+        }
+        ObservableCollection<TermDefinitionPair> GetRandomizedTerms();
+        ObservableCollection<TermDefinitionPair> GetTerms();
         ref ObservableCollection<StudySet> LoadStudySets();
         ref ObservableCollection<TermDefinitionPair> LoadTerms(Guid fileName);
         void SaveStudySets();

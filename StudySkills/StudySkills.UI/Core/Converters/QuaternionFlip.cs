@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Windows;
+using System.Windows.Media.Media3D;
 using System.Windows.Data;
 
 namespace StudySkills.UI.Core.Converters
 {
-    public class BoolToVisibility : IValueConverter
+    public class QuaternionFlip : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if(value is bool)
+            if (value is Quaternion)
             {
-                if ((bool)value)
-                    return Visibility.Visible;
+                if (((Quaternion)value).Angle == 0)
+                    return new Quaternion(1, 0, 0, 0);
+                else
+                    return new Quaternion(0, 0, 0, 1);
             }
-            return Visibility.Hidden;
+            return new Quaternion(0, 0, 0, 1);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if ((Visibility)value == Visibility.Visible)
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
     }
 }

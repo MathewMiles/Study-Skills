@@ -138,12 +138,6 @@
                 <Slider x:Name="SelectTerms"
                         Grid.Row="2"
                         Margin="0 -26 0 0"
-                        Width="480"
-                        Height="30"
-                        Minimum="0"
-                        Maximum="1"
-                        IsSnapToTickEnabled="True"
-                        TickFrequency="1"
                         Style="{StaticResource SelectTermsSlider}"/>
                 <Button x:Name="OpenNewTermModal"
                         Grid.Row="3"

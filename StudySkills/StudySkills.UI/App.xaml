@@ -15,9 +15,12 @@
                 <ResourceDictionary Source="Styles/ListBox.xaml" />
                 <ResourceDictionary Source="Styles/Slider.xaml" />
                 <ResourceDictionary Source="Styles/TextBox.xaml" />
+                <ResourceDictionary Source="Styles/ProgressBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
             <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
+            <converters:QuaternionFlip x:Key="QuaternionFlipConverter"/>
+            <converters:TermFirstToQuaternion x:Key="TermFirstToQuaternionConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

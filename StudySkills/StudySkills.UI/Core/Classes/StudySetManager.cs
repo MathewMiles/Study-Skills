@@ -1,24 +1,42 @@
 ﻿using Newtonsoft.Json;
 using StudySkills.UI.Core.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudySkills.UI.Core.Classes
 {
-    public class FileManager : IFileManager
+    public class StudySetManager : IStudySetManager
     {
         private const string filePath = @"C:\ProgramData\Study Skills";
         private readonly JsonSerializer serializer = new JsonSerializer();
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private Guid _currentFile;
+        private string _studySetTitle;
 
-        public ref ObservableCollection<TermDefinitionPair> GetTerms() => ref _terms;
+        public string StudySetTitle
+        {
+            get { return _studySetTitle; }
+            set { _studySetTitle = value; }
+        }
+
+        public ObservableCollection<TermDefinitionPair> GetRandomizedTerms()
+        {
+            ObservableCollection<TermDefinitionPair> randomList = new ObservableCollection<TermDefinitionPair>();
+            Random random = new Random();
+            for (int c = 0; c < _terms.Count; c++)
+            {
+                randomList.Add(new TermDefinitionPair() { Term = _terms[c].Term, Definition = _terms[c].Definition});
+            }
+            for (int c = _terms.Count; c > 0; c--)
+            {
+                randomList.Move(random.Next(c), _terms.Count - 1);
+            }
+            return randomList;
+        }
+        
+        public ObservableCollection<TermDefinitionPair> GetTerms() => _terms;
 
         public ref ObservableCollection<StudySet> LoadStudySets()
         {
