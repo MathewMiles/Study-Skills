@@ -11,7 +11,7 @@ namespace StudySkills.UI.Core.Classes
     public interface IStudySetManager
     {
         ObservableCollection<TermDefinitionPair> GetRandomizedTerms();
-        ref ObservableCollection<TermDefinitionPair> GetTerms();
+        ObservableCollection<TermDefinitionPair> GetTerms();
         ref ObservableCollection<StudySet> LoadStudySets();
         ref ObservableCollection<TermDefinitionPair> LoadTerms(Guid fileName);
         void SaveStudySets();

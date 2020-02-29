@@ -36,6 +36,8 @@ namespace StudySkills.UI.Views.Activities
             {
                 _terms = value;
                 SelectedTermIndex = 0;
+                CanGoPrevious = false;
+                CanGoNext = true;
                 CardNumber.Numerator = 1;
                 CardNumber.Denominator = _terms.Count;
                 FrontSide = _terms[0].Term;
@@ -121,9 +123,6 @@ namespace StudySkills.UI.Views.Activities
                         Terms = _studySetManager.GetTerms();
                     if (_random == 1)
                         Terms = _studySetManager.GetRandomizedTerms();
-                    SelectedTermIndex = 0;
-                    CanGoPrevious = false;
-                    CanGoNext = true;
                 }
             }
         }

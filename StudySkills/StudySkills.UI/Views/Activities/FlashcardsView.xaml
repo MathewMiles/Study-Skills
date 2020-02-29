@@ -115,7 +115,9 @@
                                                                         </Grid.RowDefinitions>
                                                                         <TextBlock Text="{Binding BackSide}"
                                                                                    Grid.Row="1"
-                                                                                   FontSize="70pt"
+                                                                                   MaxWidth="540" MaxHeight="360"
+                                                                                   FontSize="20pt"
+                                                                                   TextWrapping="WrapWithOverflow"
                                                                                    Foreground="{StaticResource Background}"
                                                                                    Margin="0"
                                                                                    TextAlignment="Center"/>
@@ -158,7 +160,9 @@
                                                                         </Grid.RowDefinitions>
                                                                         <TextBlock Text="{Binding FrontSide}"
                                                                                    Grid.Row="1"
-                                                                                   FontSize="70pt"
+                                                                                   MaxWidth="540" MaxHeight="360"
+                                                                                   FontSize="40pt"
+                                                                                   TextWrapping="WrapWithOverflow"
                                                                                    Foreground="{StaticResource Background}"
                                                                                    Margin="0"
                                                                                    TextAlignment="Center"/>

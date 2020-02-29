@@ -16,8 +16,12 @@ namespace StudySkills.UI.Core.Classes
 
         public ObservableCollection<TermDefinitionPair> GetRandomizedTerms()
         {
-            ObservableCollection<TermDefinitionPair> randomList = _terms;
+            ObservableCollection<TermDefinitionPair> randomList = new ObservableCollection<TermDefinitionPair>();
             Random random = new Random();
+            for (int c = 0; c < _terms.Count; c++)
+            {
+                randomList.Add(new TermDefinitionPair() { Term = _terms[c].Term, Definition = _terms[c].Definition});
+            }
             for (int c = _terms.Count; c > 0; c--)
             {
                 randomList.Move(random.Next(c), _terms.Count - 1);
@@ -25,7 +29,7 @@ namespace StudySkills.UI.Core.Classes
             return randomList;
         }
         
-        public ref ObservableCollection<TermDefinitionPair> GetTerms() => ref _terms;
+        public ObservableCollection<TermDefinitionPair> GetTerms() => _terms;
 
         public ref ObservableCollection<StudySet> LoadStudySets()
         {

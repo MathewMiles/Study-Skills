@@ -10,7 +10,7 @@ namespace StudySkills.UI.Views
     public class ShellViewModel : Conductor<object>, IHandle<GoBackEvent>, IHandle<SwitchToActivityEvent>
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IStudySetManager _fileManager;
+        private readonly IStudySetManager _studySetManager;
         private StudySetViewModel _studySetVM;
         private FlashcardsViewModel _flashcardsVM;
 
@@ -18,10 +18,10 @@ namespace StudySkills.UI.Views
             StudySetViewModel studySetVM,
             FlashcardsViewModel flashcardsVM,
             IEventAggregator eventAggregator,
-            IStudySetManager fileManager)
+            IStudySetManager studySetManager)
         {
             _eventAggregator = eventAggregator;
-            _fileManager = fileManager;
+            _studySetManager = studySetManager;
             _studySetVM = studySetVM;
             _flashcardsVM = flashcardsVM;
 
@@ -59,7 +59,8 @@ namespace StudySkills.UI.Views
             switch (message.NewActivity)
             {
                 case Activity.Flashcards:
-                    _flashcardsVM.Terms = _fileManager.GetTerms();
+                    _flashcardsVM.Terms = _studySetManager.GetTerms();
+                    _flashcardsVM.Random = 0;
                     ActivateItem(_flashcardsVM);
                     break;
             }
