@@ -13,9 +13,9 @@ namespace StudySkills.UI.Views.Activities
         private readonly IEventAggregator _eventAggregator;
         private readonly IStudySetManager _studySetManager;
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
+        private Fraction _cardNumber = new Fraction(1, 1);
         private int _selectedTermIndex;
         private string _frontSide, _backSide;
-        private Fraction _cardNumber;
         private bool _canGoNext = true, _canGoPrevious;
         private double _random;
 
@@ -36,7 +36,8 @@ namespace StudySkills.UI.Views.Activities
             {
                 _terms = value;
                 SelectedTermIndex = 0;
-                CardNumber = new Fraction(1, _terms.Count);
+                CardNumber.Numerator = 1;
+                CardNumber.Denominator = _terms.Count;
                 FrontSide = _terms[0].Term;
                 BackSide = _terms[0].Definition;
                 NotifyPropertyChanged();
@@ -50,6 +51,10 @@ namespace StudySkills.UI.Views.Activities
             {
                 _selectedTermIndex = value;
                 NotifyPropertyChanged();
+                CardNumber.Numerator = _selectedTermIndex + 1;
+                NotifyPropertyChanged("CardNumber");
+                FrontSide = Terms[_selectedTermIndex].Term;
+                BackSide = Terms[_selectedTermIndex].Definition;
             }
         }
 
@@ -106,6 +111,21 @@ namespace StudySkills.UI.Views.Activities
         public double Random
         {
             get { return _random; }
+            set
+            {
+                if (_random != value)
+                {
+                    _random = value;
+                    NotifyPropertyChanged();
+                    if (_random == 0)
+                        Terms = _studySetManager.GetTerms();
+                    if (_random == 1)
+                        Terms = _studySetManager.GetRandomizedTerms();
+                    SelectedTermIndex = 0;
+                    CanGoPrevious = false;
+                    CanGoNext = true;
+                }
+            }
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -121,29 +141,21 @@ namespace StudySkills.UI.Views.Activities
         public void NextTerm()
         {
             SelectedTermIndex++;
-            CardNumber.Numerator++;
-            NotifyPropertyChanged("CardNumber");
             if (SelectedTermIndex == Terms.Count - 1)
             {
                 CanGoNext = false;
             }
             CanGoPrevious = true;
-            FrontSide = Terms[SelectedTermIndex].Term;
-            BackSide = Terms[SelectedTermIndex].Definition;
         }
 
         public void PreviousTerm()
         {
             SelectedTermIndex--;
-            CardNumber.Numerator--;
-            NotifyPropertyChanged("CardNumber");
             if (SelectedTermIndex == 0)
             {
                 CanGoPrevious = false;
             }
             CanGoNext = true;
-            FrontSide = Terms[SelectedTermIndex].Term;
-            BackSide = Terms[SelectedTermIndex].Definition;
         }
     }
 }

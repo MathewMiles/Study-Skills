@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
 using StudySkills.UI.Core.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudySkills.UI.Core.Classes
 {
@@ -18,6 +14,17 @@ namespace StudySkills.UI.Core.Classes
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private Guid _currentFile;
 
+        public ObservableCollection<TermDefinitionPair> GetRandomizedTerms()
+        {
+            ObservableCollection<TermDefinitionPair> randomList = _terms;
+            Random random = new Random();
+            for (int c = _terms.Count; c > 0; c--)
+            {
+                randomList.Move(random.Next(c), _terms.Count - 1);
+            }
+            return randomList;
+        }
+        
         public ref ObservableCollection<TermDefinitionPair> GetTerms() => ref _terms;
 
         public ref ObservableCollection<StudySet> LoadStudySets()
