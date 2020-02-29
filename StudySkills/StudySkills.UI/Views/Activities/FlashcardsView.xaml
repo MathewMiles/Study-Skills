@@ -62,13 +62,13 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition Height="420"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0"
-                       Text="Study Set 1"
-                       Margin="0 -7 0 0"
+            <TextBlock x:Name="Title"
+                       Grid.Row="0"
+                       Margin="0"
                        Foreground="{StaticResource FontPrimary}"
                        FontSize="40"
                        TextAlignment="Center"

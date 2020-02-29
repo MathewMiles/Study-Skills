@@ -15,7 +15,7 @@ namespace StudySkills.UI.Views.Activities
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private Fraction _cardNumber = new Fraction(1, 1);
         private int _selectedTermIndex;
-        private string _frontSide, _backSide;
+        private string _frontSide, _backSide, _title;
         private bool _canGoNext = true, _canGoPrevious;
         private double _random;
 
@@ -42,6 +42,7 @@ namespace StudySkills.UI.Views.Activities
                 CardNumber.Denominator = _terms.Count;
                 FrontSide = _terms[0].Term;
                 BackSide = _terms[0].Definition;
+                Title = _studySetManager.StudySetTitle;
                 NotifyPropertyChanged();
             }
         }
@@ -125,6 +126,12 @@ namespace StudySkills.UI.Views.Activities
                         Terms = _studySetManager.GetRandomizedTerms();
                 }
             }
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

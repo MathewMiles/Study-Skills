@@ -13,6 +13,13 @@ namespace StudySkills.UI.Core.Classes
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private Guid _currentFile;
+        private string _studySetTitle;
+
+        public string StudySetTitle
+        {
+            get { return _studySetTitle; }
+            set { _studySetTitle = value; }
+        }
 
         public ObservableCollection<TermDefinitionPair> GetRandomizedTerms()
         {

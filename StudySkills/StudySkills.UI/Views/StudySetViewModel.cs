@@ -117,6 +117,7 @@ namespace StudySkills.UI.Views
                 _studySetManager.SaveTerms();
             }
             Terms = _studySetManager.LoadTerms(SelectedStudySet.FileName);
+            _studySetManager.StudySetTitle = SelectedStudySet.Name;
         }
 
         public void OpenCreateStudySetModal()

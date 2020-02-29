@@ -10,6 +10,11 @@ namespace StudySkills.UI.Core.Classes
 {
     public interface IStudySetManager
     {
+        string StudySetTitle
+        {
+            get;
+            set;
+        }
         ObservableCollection<TermDefinitionPair> GetRandomizedTerms();
         ObservableCollection<TermDefinitionPair> GetTerms();
         ref ObservableCollection<StudySet> LoadStudySets();
