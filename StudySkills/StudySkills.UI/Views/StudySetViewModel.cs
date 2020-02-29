@@ -17,7 +17,7 @@ namespace StudySkills.UI.Views
         #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
-        private readonly IFileManager _fileManager;
+        private readonly IStudySetManager _studySetManager;
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private StudySet _selectedStudySet;
@@ -28,14 +28,14 @@ namespace StudySkills.UI.Views
         public StudySetViewModel(
             IEventAggregator eventAggregator,
             IWindowManager windowManager,
-            IFileManager fileManager)
+            IStudySetManager studySetManager)
         {
             _eventAggregator = eventAggregator;
             _windowManager = windowManager;
-            _fileManager = fileManager;
+            _studySetManager = studySetManager;
 
             _eventAggregator.Subscribe(this);
-            StudySets = _fileManager.LoadStudySets();
+            StudySets = _studySetManager.LoadStudySets();
         }
 
         #region Properties
@@ -90,7 +90,7 @@ namespace StudySkills.UI.Views
                 FileName = Guid.NewGuid()
             });
             SelectedStudySet = StudySets.Last();
-            _fileManager.SaveStudySets();
+            _studySetManager.SaveStudySets();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -114,9 +114,9 @@ namespace StudySkills.UI.Views
         {
             if (e.RemovedItems.Count > 0)
             {
-                _fileManager.SaveTerms();
+                _studySetManager.SaveTerms();
             }
-            Terms = _fileManager.LoadTerms(SelectedStudySet.FileName);
+            Terms = _studySetManager.LoadTerms(SelectedStudySet.FileName);
         }
 
         public void OpenCreateStudySetModal()
@@ -143,8 +143,8 @@ namespace StudySkills.UI.Views
 
         public void Handle(AppClosingEvent message)
         {
-            _fileManager.SaveTerms();
-            _fileManager.SaveStudySets();
+            _studySetManager.SaveTerms();
+            _studySetManager.SaveStudySets();
         }
         #endregion
     }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudySkills.UI.Core.Classes
 {
-    public class FileManager : IFileManager
+    public class StudySetManager : IStudySetManager
     {
         private const string filePath = @"C:\ProgramData\Study Skills";
         private readonly JsonSerializer serializer = new JsonSerializer();

@@ -11,21 +11,22 @@ namespace StudySkills.UI.Views.Activities
     public class FlashcardsViewModel : Screen, INotifyPropertyChanged
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IFileManager _fileManager;
+        private readonly IStudySetManager _studySetManager;
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private int _selectedTermIndex;
         private string _frontSide, _backSide;
         private Fraction _cardNumber;
         private bool _canGoNext = true, _canGoPrevious;
+        private double _random;
 
         override public event PropertyChangedEventHandler PropertyChanged;
 
         public FlashcardsViewModel(
             IEventAggregator eventAggregator,
-            IFileManager fileManager)
+            IStudySetManager studySetManager)
         {
             _eventAggregator = eventAggregator;
-            _fileManager = fileManager;
+            _studySetManager = studySetManager;
         }
 
         public ObservableCollection<TermDefinitionPair> Terms
@@ -100,6 +101,11 @@ namespace StudySkills.UI.Views.Activities
                 _canGoPrevious = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        public double Random
+        {
+            get { return _random; }
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

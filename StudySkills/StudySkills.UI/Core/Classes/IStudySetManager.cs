@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudySkills.UI.Core.Classes
 {
-    public interface IFileManager
+    public interface IStudySetManager
     {
         ref ObservableCollection<TermDefinitionPair> GetTerms();
         ref ObservableCollection<StudySet> LoadStudySets();

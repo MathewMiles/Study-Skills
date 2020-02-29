@@ -10,7 +10,7 @@ namespace StudySkills.UI.Views
     public class ShellViewModel : Conductor<object>, IHandle<GoBackEvent>, IHandle<SwitchToActivityEvent>
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IFileManager _fileManager;
+        private readonly IStudySetManager _fileManager;
         private StudySetViewModel _studySetVM;
         private FlashcardsViewModel _flashcardsVM;
 
@@ -18,7 +18,7 @@ namespace StudySkills.UI.Views
             StudySetViewModel studySetVM,
             FlashcardsViewModel flashcardsVM,
             IEventAggregator eventAggregator,
-            IFileManager fileManager)
+            IStudySetManager fileManager)
         {
             _eventAggregator = eventAggregator;
             _fileManager = fileManager;

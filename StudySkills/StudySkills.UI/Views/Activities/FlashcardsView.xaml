@@ -23,6 +23,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button x:Name="GoBack"
@@ -41,6 +42,18 @@
                         VerticalAlignment="Bottom"
                         Value="1"/>
                 <TextBlock Text="Term First"
+                           Foreground="{StaticResource FontTertiary}"
+                           FontSize="18"
+                           VerticalAlignment="Bottom"
+                           Margin="5 0 0 1"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal">
+                <Slider x:Name="Random"
+                        Style="{StaticResource OptionTermsSlider}"
+                        Margin="10 0 0 0"
+                        VerticalAlignment="Bottom"/>
+                <TextBlock Text="Randomize"
                            Foreground="{StaticResource FontTertiary}"
                            FontSize="18"
                            VerticalAlignment="Bottom"
