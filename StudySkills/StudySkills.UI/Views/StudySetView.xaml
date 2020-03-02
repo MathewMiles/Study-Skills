@@ -46,7 +46,7 @@
         <!-- Study Set View -->
         <ScrollViewer Grid.Column="1"
                       Width="560"
-                      Visibility="{Binding ElementName=StudySets, Path=SelectedIndex, Converter={StaticResource SelectedIndexToVisibilityConverter}}"
+                      Visibility="Visible"
                       Style="{StaticResource SelectStudySetScrollViewer}">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
@@ -139,7 +139,7 @@
                         Grid.Row="2"
                         Margin="0 -26 0 0"
                         Style="{StaticResource SelectTermsSlider}"/>
-                <Button x:Name="OpenNewTermModal"
+                <!--<Button x:Name="OpenNewTermModal"
                         Grid.Row="3"
                         Width="200"
                         Height="30"
@@ -147,7 +147,29 @@
                         Padding="0"
                         Content="+ Add New Term"
                         FontSize="17"
-                        Style="{StaticResource AddNewButton}"/>
+                        Style="{StaticResource AddNewButton}"/>-->
+                <Border Grid.Row="3"
+                        CornerRadius="5"
+                        Width="480"
+                        Margin="0 0 0 10">
+                    <Grid Background="{StaticResource BackPrimary}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0"
+                                 Style="{StaticResource SingleLineTextBox}"/>
+                        <Rectangle Grid.Column="1"
+                                   Margin="5"
+                                   Height="Auto"
+                                   Width="1"
+                                   Fill="{StaticResource FontSecondary}"/>
+                        <TextBox Grid.Column="2"
+                                 Style="{StaticResource SingleLineTextBox}"/>
+                    </Grid>
+                </Border>
                 <ListBox x:Name="Terms"
                          Grid.Row="4"
                          SelectionMode="Multiple"
