@@ -152,6 +152,11 @@ namespace StudySkills.UI.Views
         {
             _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
         }
+
+        public void Match()
+        {
+            _eventAggregator.PublishOnUIThread(new SwitchToActivityEvent() { NewActivity = Activity.Match });
+        }
         #endregion
 
         #region Handlers
