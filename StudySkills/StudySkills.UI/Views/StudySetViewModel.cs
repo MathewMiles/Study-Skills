@@ -113,12 +113,19 @@ namespace StudySkills.UI.Views
         #region Actions
         public void AddTerm()
         {
+            if (NewTerm == "" || NewTerm == null ||NewDefinition == "" || NewDefinition == null)
+            {
+                _windowManager.ShowDialog(new MessageModalViewModel("Error", "Must have a term and definition."));
+                return;
+            }
             Terms.Add(new TermDefinitionPair()
             {
                 Term = NewTerm,
                 Definition = NewDefinition
             });
             StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms++;
+            NewTerm = "";
+            NewDefinition = "";
         }
 
         public void DeleteTerm(TermDefinitionPair term)
@@ -144,11 +151,6 @@ namespace StudySkills.UI.Views
         public void OpenCreateStudySetModal()
         {
             _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
-        }
-
-        public void OpenNewTermModal()
-        {
-            _windowManager.ShowDialog(new NewTermModalViewModel(_eventAggregator));
         }
         #endregion
 

@@ -46,7 +46,7 @@
         <!-- Study Set View -->
         <ScrollViewer Grid.Column="1"
                       Width="560"
-                      Visibility="Visible"
+                      Visibility="{Binding ElementName=StudySets, Path=SelectedIndex, Converter={StaticResource SelectedIndexToVisibilityConverter}}"
                       Style="{StaticResource SelectStudySetScrollViewer}">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">15</sys:Double>
@@ -55,7 +55,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" MinHeight="75"/>
                     <RowDefinition Height="100"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition Height="Auto" MinHeight="45"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -137,17 +137,8 @@
                 </StackPanel>
                 <Slider x:Name="SelectTerms"
                         Grid.Row="2"
-                        Margin="0 -26 0 0"
+                        Margin="0 -14 0 0"
                         Style="{StaticResource SelectTermsSlider}"/>
-                <!--<Button x:Name="OpenNewTermModal"
-                        Grid.Row="3"
-                        Width="200"
-                        Height="30"
-                        Margin="0 -16 0 0"
-                        Padding="0"
-                        Content="+ Add New Term"
-                        FontSize="17"
-                        Style="{StaticResource AddNewButton}"/>-->
                 <Border Grid.Row="3"
                         CornerRadius="5"
                         Width="480"
