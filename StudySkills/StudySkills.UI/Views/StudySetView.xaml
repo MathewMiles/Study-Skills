@@ -55,8 +55,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" MinHeight="75"/>
                     <RowDefinition Height="100"/>
-                    <RowDefinition Height="55"/>
                     <RowDefinition Height="45"/>
+                    <RowDefinition Height="Auto" MinHeight="45"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="SelectedStudySet_Name"
@@ -137,17 +137,45 @@
                 </StackPanel>
                 <Slider x:Name="SelectTerms"
                         Grid.Row="2"
-                        Margin="0 -26 0 0"
+                        Margin="0 -14 0 0"
                         Style="{StaticResource SelectTermsSlider}"/>
-                <Button x:Name="OpenNewTermModal"
-                        Grid.Row="3"
-                        Width="200"
-                        Height="30"
-                        Margin="0 -16 0 0"
-                        Padding="0"
-                        Content="+ Add New Term"
-                        FontSize="17"
-                        Style="{StaticResource AddNewButton}"/>
+                <Border Grid.Row="3"
+                        CornerRadius="5"
+                        Width="480"
+                        Margin="0 0 0 10"
+                        Background="{StaticResource BackPrimary}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="NewTerm"
+                                 Grid.Column="0"
+                                 Margin="5 5 0 5"
+                                 Tag="Term"
+                                 VerticalAlignment="Top"
+                                 Style="{StaticResource SingleLineTextBox}"/>
+                        <Rectangle Grid.Column="1"
+                                   Margin="5"
+                                   Height="Auto"
+                                   Width="1"
+                                   Fill="{StaticResource FontSecondary}"/>
+                        <TextBox x:Name="NewDefinition"
+                                 Grid.Column="2"
+                                 Margin="0 5"
+                                 Tag="Definition"
+                                 Style="{StaticResource MultiLineTextBox}"/>
+                        <Button x:Name="AddTerm"
+                                Grid.Column="3"
+                                Margin="5"
+                                Width="50"
+                                Content="Add"
+                                VerticalAlignment="Top"
+                                Style="{StaticResource SaveButton}"/>
+                    </Grid>
+                </Border>
                 <ListBox x:Name="Terms"
                          Grid.Row="4"
                          SelectionMode="Multiple"

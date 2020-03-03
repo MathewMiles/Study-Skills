@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace StudySkills.UI.Views
 {
-    public class StudySetViewModel : Screen, INotifyPropertyChanged,  IHandle<CreateStudySetEvent>, IHandle<AddTermEvent>, IHandle<AppClosingEvent>
+    public class StudySetViewModel : Screen, INotifyPropertyChanged,  IHandle<CreateStudySetEvent>, IHandle<AppClosingEvent>
     {
         #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
@@ -21,6 +21,7 @@ namespace StudySkills.UI.Views
         private ObservableCollection<StudySet> _studySets = new ObservableCollection<StudySet>();
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
         private StudySet _selectedStudySet;
+        private string _newTerm, _newDefinition;
 
         override public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -68,19 +69,29 @@ namespace StudySkills.UI.Views
                 NotifyPropertyChanged();
             }
         }
+
+        public string NewTerm
+        {
+            get { return _newTerm; }
+            set
+            {
+                _newTerm = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string NewDefinition
+        {
+            get { return _newDefinition; }
+            set
+            {
+                _newDefinition = value;
+                NotifyPropertyChanged();
+            }
+        }
         #endregion
 
         #region Private Methods
-        private void AddTerm(string term, string definition)
-        {
-            Terms.Add(new TermDefinitionPair()
-            {
-                Term = term,
-                Definition = definition
-            });
-            StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms++;
-        }
-
         private void CreateStudySet(string name)
         {
             StudySets.Add(new StudySet()
@@ -100,6 +111,23 @@ namespace StudySkills.UI.Views
         #endregion
 
         #region Actions
+        public void AddTerm()
+        {
+            if (NewTerm == "" || NewTerm == null ||NewDefinition == "" || NewDefinition == null)
+            {
+                _windowManager.ShowDialog(new MessageModalViewModel("Error", "Must have a term and definition."));
+                return;
+            }
+            Terms.Add(new TermDefinitionPair()
+            {
+                Term = NewTerm,
+                Definition = NewDefinition
+            });
+            StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms++;
+            NewTerm = "";
+            NewDefinition = "";
+        }
+
         public void DeleteTerm(TermDefinitionPair term)
         {
             Terms.Remove(term);
@@ -124,22 +152,12 @@ namespace StudySkills.UI.Views
         {
             _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
         }
-
-        public void OpenNewTermModal()
-        {
-            _windowManager.ShowDialog(new NewTermModalViewModel(_eventAggregator));
-        }
         #endregion
 
         #region Handlers
         public void Handle(CreateStudySetEvent message)
         {
             CreateStudySet(message.Name);
-        }
-
-        public void Handle(AddTermEvent message)
-        {
-            AddTerm(message.Term, message.Definition);
         }
 
         public void Handle(AppClosingEvent message)

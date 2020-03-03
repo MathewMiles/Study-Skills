@@ -21,6 +21,7 @@
             <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
             <converters:QuaternionFlip x:Key="QuaternionFlipConverter"/>
             <converters:TermFirstToQuaternion x:Key="TermFirstToQuaternionConverter"/>
+            <converters:ObjectToString x:Key="ObjectToStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

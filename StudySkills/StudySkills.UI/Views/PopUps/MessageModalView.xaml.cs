@@ -17,9 +17,9 @@ namespace StudySkills.UI.Views.PopUps
     /// <summary>
     /// Interaction logic for NewTermModalView.xaml
     /// </summary>
-    public partial class NewTermModalView : Window
+    public partial class MessageModalView : Window
     {
-        public NewTermModalView()
+        public MessageModalView()
         {
             InitializeComponent();
         }
