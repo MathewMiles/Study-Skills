@@ -78,6 +78,8 @@
     <Compile Include="Core\Classes\StudySetManager.cs" />
     <Compile Include="Core\Classes\IStudySetManager.cs" />
     <Compile Include="Core\Converters\BoolToVisibility.cs" />
+    <Compile Include="Core\Converters\EmptyStringToVisibility.cs" />
+    <Compile Include="Core\Converters\ObjectToString.cs" />
     <Compile Include="Core\Converters\QuaternionFlip.cs" />
     <Compile Include="Core\Converters\SelectedIndexToVisibility.cs" />
     <Compile Include="Core\Converters\TermFirstToQuaternion.cs" />
