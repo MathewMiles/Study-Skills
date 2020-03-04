@@ -41,6 +41,10 @@
                        TextAlignment="Center"
                        TextTrimming="WordEllipsis"
                        MaxWidth="600"/>
+            <ListBox x:Name="MatchCards"
+                     Grid.Row="1"
+                     HorizontalAlignment="Center"
+                     Style="{StaticResource MatchCardsListBox}"/>
         </Grid>
     </Grid>
 </UserControl>

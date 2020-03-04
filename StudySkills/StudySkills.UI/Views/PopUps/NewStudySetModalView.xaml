@@ -40,9 +40,9 @@
         <TextBox x:Name="StudySetName"
                  Grid.Row="1"
                  Width="300"
+                 Tag="Name"
                  Margin="0 15"
-                 Style="{StaticResource SingleLineTextBox}"
-                 cal:Message.Attach="[Event GotFocus] = [Action StudySetName_GotFocus()]; [Event LostFocus] = [Action StudySetName_LostFocus()]"/>
+                 Style="{StaticResource SingleLineTextBox}"/>
         <Button x:Name="Create"
                 Grid.Row="2"
                 Width="300"

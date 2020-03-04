@@ -18,6 +18,8 @@ namespace StudySkills.UI.Views.Activities
         private readonly IEventAggregator _eventAggregator;
         private readonly IStudySetManager _studySetManager;
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
+        private ObservableCollection<MatchCard> _matchCards = new ObservableCollection<MatchCard>();
+        private string _title;
 
         override public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,6 +38,43 @@ namespace StudySkills.UI.Views.Activities
             {
                 _terms = value;
                 NotifyPropertyChanged();
+                Title = _studySetManager.StudySetTitle;
+                CreateMatchCards();
+            }
+        }
+
+        public ObservableCollection<MatchCard> MatchCards
+        {
+            get { return _matchCards; }
+            set
+            {
+                _matchCards = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void CreateMatchCards()
+        {
+            MatchCards.Clear();
+            for (int c = 0; c < 8; c++)
+            {
+                MatchCards.Add(new MatchCard(Terms[c].Term, c));
+                MatchCards.Add(new MatchCard(Terms[c].Definition, c));
+            }
+            Random random = new Random();
+            for (int c = _terms.Count; c > 0; c--)
+            {
+                MatchCards.Move(random.Next(c), _terms.Count - 1);
             }
         }
 

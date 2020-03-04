@@ -102,6 +102,7 @@ namespace StudySkills.UI.Views
             });
             SelectedStudySet = StudySets.Last();
             _studySetManager.SaveStudySets();
+            Terms.Clear();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

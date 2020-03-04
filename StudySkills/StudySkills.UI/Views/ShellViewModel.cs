@@ -67,6 +67,7 @@ namespace StudySkills.UI.Views
                     ActivateItem(_flashcardsVM);
                     break;
                 case Activity.Match:
+                    _matchVM.Terms = _studySetManager.GetRandomizedTerms();
                     ActivateItem(_matchVM);
                     break;
             }
