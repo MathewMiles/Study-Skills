@@ -102,6 +102,7 @@ namespace StudySkills.UI.Views
             });
             SelectedStudySet = StudySets.Last();
             _studySetManager.SaveStudySets();
+            Terms.Clear();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -151,6 +152,11 @@ namespace StudySkills.UI.Views
         public void OpenCreateStudySetModal()
         {
             _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
+        }
+
+        public void Match()
+        {
+            _eventAggregator.PublishOnUIThread(new SwitchToActivityEvent() { NewActivity = Activity.Match });
         }
         #endregion
 

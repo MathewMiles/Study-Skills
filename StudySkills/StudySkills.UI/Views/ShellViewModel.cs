@@ -13,10 +13,12 @@ namespace StudySkills.UI.Views
         private readonly IStudySetManager _studySetManager;
         private StudySetViewModel _studySetVM;
         private FlashcardsViewModel _flashcardsVM;
+        private MatchViewModel _matchVM;
 
         public ShellViewModel(
             StudySetViewModel studySetVM,
             FlashcardsViewModel flashcardsVM,
+            MatchViewModel matchVM,
             IEventAggregator eventAggregator,
             IStudySetManager studySetManager)
         {
@@ -24,6 +26,7 @@ namespace StudySkills.UI.Views
             _studySetManager = studySetManager;
             _studySetVM = studySetVM;
             _flashcardsVM = flashcardsVM;
+            _matchVM = matchVM;
 
             _eventAggregator.Subscribe(this);
             ActivateItem(_studySetVM);
@@ -62,6 +65,9 @@ namespace StudySkills.UI.Views
                     _flashcardsVM.Terms = _studySetManager.GetTerms();
                     _flashcardsVM.Random = 0;
                     ActivateItem(_flashcardsVM);
+                    break;
+                case Activity.Match:
+                    ActivateItem(_matchVM);
                     break;
             }
         }

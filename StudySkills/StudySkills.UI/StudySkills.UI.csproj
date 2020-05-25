@@ -90,12 +90,18 @@
     <Compile Include="Core\Events\SwitchToActivityEvent.cs" />
     <Compile Include="Core\Models\Activity.cs" />
     <Compile Include="Core\Models\Fraction.cs" />
+    <Compile Include="Core\Models\MatchCard.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
+    <Compile Include="Core\Overrides\AltEventTrigger.cs" />
     <Compile Include="Views\Activities\FlashcardsView.xaml.cs">
       <DependentUpon>FlashcardsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Activities\FlashcardsViewModel.cs" />
+    <Compile Include="Views\Activities\MatchView.xaml.cs">
+      <DependentUpon>MatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activities\MatchViewModel.cs" />
     <Compile Include="Views\PopUps\NewStudySetModalView.xaml.cs">
       <DependentUpon>NewStudySetModalView.xaml</DependentUpon>
     </Compile>
@@ -166,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Activities\FlashcardsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Activities\MatchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
