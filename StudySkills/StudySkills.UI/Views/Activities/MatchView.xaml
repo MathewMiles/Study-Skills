@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudySkills.UI.Views.Activities"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+             xmlns:ov="clr-namespace:StudySkills.UI.Core.Overrides"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="800"
+             cal:Message.Attach="[Event Loaded] = [Action OnLoad()]">
     <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -44,7 +48,15 @@
             <ListBox x:Name="MatchCards"
                      Grid.Row="1"
                      HorizontalAlignment="Center"
-                     Style="{StaticResource MatchCardsListBox}"/>
+                     Style="{StaticResource MatchCardsListBox}">
+                <i:Interaction.Triggers>
+                    <ov:AltEventTrigger EventName="SelectionChanged">
+                        <cal:ActionMessage MethodName="CheckMatch">
+                            <cal:Parameter Value="$eventArgs"/>
+                        </cal:ActionMessage>
+                    </ov:AltEventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
         </Grid>
     </Grid>
 </UserControl>

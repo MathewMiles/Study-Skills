@@ -93,6 +93,7 @@
     <Compile Include="Core\Models\MatchCard.cs" />
     <Compile Include="Core\Models\StudySet.cs" />
     <Compile Include="Core\Models\TermDefinitionPair.cs" />
+    <Compile Include="Core\Overrides\AltEventTrigger.cs" />
     <Compile Include="Views\Activities\FlashcardsView.xaml.cs">
       <DependentUpon>FlashcardsView.xaml</DependentUpon>
     </Compile>

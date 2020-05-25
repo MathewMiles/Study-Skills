@@ -8,6 +8,13 @@ namespace StudySkills.UI.Core.Models
         private bool _unmatched;
         private int _id;
 
+        public MatchCard()
+        {
+            _text = "";
+            _unmatched = true;
+            _id = -1;
+        }
+
         public MatchCard(string text, int id)
         {
             _text = text;
