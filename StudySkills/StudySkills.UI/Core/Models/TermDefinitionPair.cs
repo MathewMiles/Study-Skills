@@ -7,6 +7,7 @@ namespace StudySkills.UI.Core.Models
         private string _term;
         private string _definition;
 
+        #region Properties
         public string Term
         {
             get { return _term; }
@@ -19,6 +20,7 @@ namespace StudySkills.UI.Core.Models
                 }
             }
         }
+
         public string Definition
         {
             get { return _definition; }
@@ -31,6 +33,7 @@ namespace StudySkills.UI.Core.Models
                 }
             }
         }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 
