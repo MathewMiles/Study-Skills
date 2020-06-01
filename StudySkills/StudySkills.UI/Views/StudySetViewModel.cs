@@ -40,36 +40,6 @@ namespace StudySkills.UI.Views
         }
 
         #region Properties
-        public ObservableCollection<StudySet> StudySets 
-        {
-            get { return _studySets; }
-            private set 
-            {
-                _studySets = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public StudySet SelectedStudySet
-        {
-            get { return _selectedStudySet; }
-            set
-            {
-                _selectedStudySet = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public ObservableCollection<TermDefinitionPair> Terms
-        {
-            get { return _terms; }
-            private set
-            {
-                _terms = value;
-                NotifyPropertyChanged();
-            }
-        }
-
         public string NewTerm
         {
             get { return _newTerm; }
@@ -86,6 +56,36 @@ namespace StudySkills.UI.Views
             set
             {
                 _newDefinition = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public StudySet SelectedStudySet
+        {
+            get { return _selectedStudySet; }
+            set
+            {
+                _selectedStudySet = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<StudySet> StudySets
+        {
+            get { return _studySets; }
+            private set
+            {
+                _studySets = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<TermDefinitionPair> Terms
+        {
+            get { return _terms; }
+            private set
+            {
+                _terms = value;
                 NotifyPropertyChanged();
             }
         }
@@ -132,8 +132,12 @@ namespace StudySkills.UI.Views
         public void DeleteTerm(TermDefinitionPair term)
         {
             Terms.Remove(term);
+            StudySets.ElementAt(StudySets.IndexOf(SelectedStudySet)).Terms--;
         }
 
+        /// <summary>
+        /// Switches to flashcards View
+        /// </summary>
         public void Flashcards()
         {
             _eventAggregator.PublishOnUIThread(new SwitchToActivityEvent() { NewActivity = Activity.Flashcards});
@@ -149,14 +153,17 @@ namespace StudySkills.UI.Views
             _studySetManager.StudySetTitle = SelectedStudySet.Name;
         }
 
-        public void OpenCreateStudySetModal()
-        {
-            _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
-        }
-
+        /// <summary>
+        /// Switches to match game view
+        /// </summary>
         public void Match()
         {
             _eventAggregator.PublishOnUIThread(new SwitchToActivityEvent() { NewActivity = Activity.Match });
+        }
+
+        public void OpenCreateStudySetModal()
+        {
+            _windowManager.ShowDialog(new NewStudySetModalViewModel(_eventAggregator));
         }
         #endregion
 

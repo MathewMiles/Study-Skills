@@ -67,6 +67,7 @@
                            Foreground="{StaticResource FontPrimary}"
                            TextAlignment="Center"
                            TextWrapping="WrapWithOverflow"/>
+                <!-- Activity Buttons -->
                 <StackPanel Grid.Row="1"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
@@ -139,6 +140,7 @@
                         Grid.Row="2"
                         Margin="0 -14 0 0"
                         Style="{StaticResource SelectTermsSlider}"/>
+                <!--- Add Term -->
                 <Border Grid.Row="3"
                         CornerRadius="5"
                         Width="480"
@@ -245,6 +247,7 @@
                 </ListBox>
             </Grid>
         </ScrollViewer>
+        <!-- Fade at the bottom of app -->
         <Border Grid.ColumnSpan="2"
                 BorderThickness="0 0 0 100"
                 BorderBrush="{StaticResource Background}"

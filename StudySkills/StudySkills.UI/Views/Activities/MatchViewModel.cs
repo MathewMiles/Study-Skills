@@ -12,6 +12,7 @@ namespace StudySkills.UI.Views.Activities
 {
     public class MatchViewModel : Screen, INotifyPropertyChanged
     {
+        #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
         private readonly IStudySetManager _studySetManager;
         private ObservableCollection<TermDefinitionPair> _terms = new ObservableCollection<TermDefinitionPair>();
@@ -21,6 +22,7 @@ namespace StudySkills.UI.Views.Activities
         private int _lastCardId = -1;
 
         override public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
         public MatchViewModel(
             IEventAggregator eventAggregator,
@@ -30,16 +32,7 @@ namespace StudySkills.UI.Views.Activities
             _studySetManager = studySetManager;
         }
 
-        public ObservableCollection<TermDefinitionPair> Terms
-        {
-            get { return _terms; }
-            set
-            {
-                _terms = value;
-                NotifyPropertyChanged();
-            }
-        }
-
+        #region Properties
         public ObservableCollection<MatchCard> MatchCards
         {
             get { return _matchCards; }
@@ -60,6 +53,16 @@ namespace StudySkills.UI.Views.Activities
             }
         }
 
+        public ObservableCollection<TermDefinitionPair> Terms
+        {
+            get { return _terms; }
+            set
+            {
+                _terms = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public string Title
         {
             get { return _title; }
@@ -69,7 +72,12 @@ namespace StudySkills.UI.Views.Activities
                 NotifyPropertyChanged();
             }
         }
+        #endregion
 
+        #region Private Methods
+        /// <summary>
+        /// Resets the cards
+        /// </summary>
         private void CreateMatchCards()
         {
             MatchCards.Clear();
@@ -89,35 +97,43 @@ namespace StudySkills.UI.Views.Activities
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
+        #region Actions
+        /// <summary>
+        /// Logic for the cards being selected and matched
+        /// </summary>
         public void CheckMatch(SelectionChangedEventArgs e)
         {
             if(e.AddedItems.Count == 1)
             {
+                // If only one card is selected, save as last card
                 if (_lastCardId == -1)
                 {
                     _lastCardId = ((MatchCard)e.AddedItems[0]).Id;
                 }
                 else
                 {
+                    // If cards are a match, they disappear, otherwise it resets the selections
                     if (_lastCardId == ((MatchCard)e.AddedItems[0]).Id)
                     {
-                        for (int c = 0; c < 16; c++)
+                        foreach (var card in MatchCards)
                         {
-                            if (MatchCards[c].Id == _lastCardId)
-                                MatchCards[c].Unmatched = false;
+                            if (card.Id == _lastCardId)
+                                card.Unmatched = false;
                         }
                     }
                     _lastCardId = -1;
                     SelectedMatchCard = null;
                 }
             }
+            // Resets cards if all are matched
             else if (MatchCards.Count > 0)
             {
                 _lastCardId = -1;
-                for (int c = 0; c < 16; c++)
+                foreach (var card in MatchCards)
                 {
-                    if (MatchCards[c].Unmatched)
+                    if (card.Unmatched)
                         return;
                 }
                 Terms = _studySetManager.GetRandomizedTerms();
@@ -125,6 +141,9 @@ namespace StudySkills.UI.Views.Activities
             }
         }
 
+        /// <summary>
+        /// Returns to the study set view
+        /// </summary>
         public void GoBack()
         {
             Terms.Clear();
@@ -139,5 +158,6 @@ namespace StudySkills.UI.Views.Activities
             CreateMatchCards();
             _lastCardId = -1;
         }
+        #endregion
     }
 }

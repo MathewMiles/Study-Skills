@@ -16,6 +16,7 @@
             <ColumnDefinition Width="650"/>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0 0 1 0" BorderBrush="{StaticResource BackSecondary}"/>
+        <!-- Menu on right -->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
@@ -32,6 +33,7 @@
                     Padding="-20 -3 0 0"
                     Style="{StaticResource GoBackButton}"/>
         </Grid>
+        <!--- Match game -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
