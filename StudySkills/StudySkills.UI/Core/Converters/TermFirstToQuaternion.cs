@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace StudySkills.UI.Core.Converters
 {
+    /// <summary>
+    /// Converts double to either 0 or 180 degrees to control the side of the flashcard that appears first.
+    /// </summary>
     public class TermFirstToQuaternion : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

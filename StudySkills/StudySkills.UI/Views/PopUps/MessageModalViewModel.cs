@@ -42,6 +42,9 @@ namespace StudySkills.UI.Views.PopUps
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Closes message window
+        /// </summary>
         public void Dismiss()
         {
             this.TryClose();

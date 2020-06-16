@@ -4,12 +4,13 @@ using StudySkills.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace StudySkills.UI
 {
+    /// <summary>
+    /// App starts up here and initializes everything. Part of implementing Caliburn.Micro.
+    /// </summary>
     public class Bootstrapper : BootstrapperBase
     {
         private SimpleContainer _simpleContainer = new SimpleContainer();
@@ -23,6 +24,7 @@ namespace StudySkills.UI
         {
             _simpleContainer.Instance(_simpleContainer);
 
+            // Make classes singletons here.
             _simpleContainer
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()

@@ -9,7 +9,9 @@
                 <ResourceDictionary>
                     <local:Bootstrapper x:Key="Bootstrapper"/>
                 </ResourceDictionary>
+                <!-- Colors -->
                 <ResourceDictionary Source="Resources/Colors.xaml" />
+                <!-- Styles -->
                 <ResourceDictionary Source="Styles/Button.xaml" />
                 <ResourceDictionary Source="Styles/ScrollViewer.xaml" />
                 <ResourceDictionary Source="Styles/ListBox.xaml" />
@@ -17,11 +19,11 @@
                 <ResourceDictionary Source="Styles/TextBox.xaml" />
                 <ResourceDictionary Source="Styles/ProgressBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <!-- Converters -->
             <converters:BoolToVisibility x:Key="BoolToVisibilityConverter"/>
             <converters:SelectedIndexToVisibility x:Key="SelectedIndexToVisibilityConverter"/>
             <converters:QuaternionFlip x:Key="QuaternionFlipConverter"/>
             <converters:TermFirstToQuaternion x:Key="TermFirstToQuaternionConverter"/>
-            <converters:ObjectToString x:Key="ObjectToStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

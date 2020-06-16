@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using StudySkills.UI.Core.Events;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace StudySkills.UI.Views.PopUps
 {
@@ -7,6 +9,8 @@ namespace StudySkills.UI.Views.PopUps
     {
         private string _studySetName;
         private readonly IEventAggregator _eventAggregator;
+
+        override public event PropertyChangedEventHandler PropertyChanged;
 
         public NewStudySetModalViewModel(
             IEventAggregator eventAggregator)
@@ -21,8 +25,13 @@ namespace StudySkills.UI.Views.PopUps
             set
             {
                 _studySetName = value;
-                NotifyOfPropertyChange(() => StudySetName);
+                NotifyPropertyChanged();
             }
+        }
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public void Create()
@@ -34,7 +43,6 @@ namespace StudySkills.UI.Views.PopUps
         public void Cancel()
         {
             this.TryClose();
-            App.Current.MainWindow.Effect = null;
         }
     }
 }

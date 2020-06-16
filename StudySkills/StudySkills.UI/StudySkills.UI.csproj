@@ -83,7 +83,6 @@
     <Compile Include="Core\Converters\QuaternionFlip.cs" />
     <Compile Include="Core\Converters\SelectedIndexToVisibility.cs" />
     <Compile Include="Core\Converters\TermFirstToQuaternion.cs" />
-    <Compile Include="Core\Events\AddTermEvent.cs" />
     <Compile Include="Core\Events\AppClosingEvent.cs" />
     <Compile Include="Core\Events\CreateStudySetEvent.cs" />
     <Compile Include="Core\Events\GoBackEvent.cs" />

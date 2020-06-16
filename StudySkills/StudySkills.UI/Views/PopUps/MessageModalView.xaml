@@ -13,6 +13,7 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!-- Top Bar -->
         <Grid Grid.Row="0"
               Background="{StaticResource Background}">
             <Grid.ColumnDefinitions>
@@ -36,6 +37,7 @@
                 </Button.Content>
             </Button>
         </Grid>
+        <!-- Message -->
         <TextBlock x:Name="Message"
                    Grid.Row="1"
                    Margin="10 5"

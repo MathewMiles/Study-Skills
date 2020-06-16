@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace StudySkills.UI.Core.Converters
 {
+    /// <summary>
+    /// Converts Quaternion from 0 to 180 degress and vice versa.
+    /// </summary>
     public class QuaternionFlip : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

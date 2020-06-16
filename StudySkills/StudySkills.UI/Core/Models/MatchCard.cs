@@ -8,6 +8,7 @@ namespace StudySkills.UI.Core.Models
         private bool _unmatched;
         private int _id;
 
+        #region Constructors
         public MatchCard()
         {
             _text = "";
@@ -21,7 +22,9 @@ namespace StudySkills.UI.Core.Models
             _unmatched = true;
             _id = id;
         }
+        #endregion
 
+        #region Properties
         public string Text
         {
             get { return _text; }
@@ -51,6 +54,7 @@ namespace StudySkills.UI.Core.Models
                 OnPropertyChanged("Id");
             }
         }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 

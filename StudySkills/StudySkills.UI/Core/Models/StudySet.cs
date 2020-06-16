@@ -9,6 +9,7 @@ namespace StudySkills.UI.Core.Models
         private int _terms;
         private Guid _fileName;
 
+        #region Properties
         public string Name
         {
             get { return _name; }
@@ -21,6 +22,7 @@ namespace StudySkills.UI.Core.Models
                 }
             }
         }
+
         public int Terms
         {
             get { return _terms; }
@@ -33,6 +35,7 @@ namespace StudySkills.UI.Core.Models
                 }
             }
         }
+
         public Guid FileName
         {
             get { return _fileName; }
@@ -45,6 +48,7 @@ namespace StudySkills.UI.Core.Models
                 }
             }
         }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 

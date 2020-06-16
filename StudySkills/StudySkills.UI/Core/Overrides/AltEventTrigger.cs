@@ -3,6 +3,9 @@ using System.Windows.Interactivity;
 
 namespace StudySkills.UI.Core.Overrides
 {
+    /// <summary>
+    /// Used instead of EventTrigger when it attaches the handler multiple times.
+    /// </summary>
     public class AltEventTrigger : EventTrigger
     {
         private static bool isAttached;
@@ -12,7 +15,9 @@ namespace StudySkills.UI.Core.Overrides
         protected override void OnAttached()
         {
             base.OnAttached();
-            if (isAttached) detachOldTrigger = true;
+            // Detach the old trigger if there is one, during next OnEvent
+            if (isAttached)
+                detachOldTrigger = true;
             else
             {
                 isAttached = true;
@@ -22,19 +27,16 @@ namespace StudySkills.UI.Core.Overrides
 
         protected override void OnEvent(EventArgs eventArgs)
         {
+            // Detaches old trigger
             if (detachOldTrigger && currentTrigger)
             {
                 detachOldTrigger = false;
                 Detach();
                 return;
             }
-            if (!detachOldTrigger && !currentTrigger) currentTrigger = true;
+            if (!detachOldTrigger && !currentTrigger)
+                currentTrigger = true;
             base.OnEvent(eventArgs);
-        }
-
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
         }
     }
 }

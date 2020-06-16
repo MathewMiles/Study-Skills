@@ -7,6 +7,13 @@ namespace StudySkills.UI.Core.Models
         private int _numerator = 1, _denominator = 1;
         private double _decimalValue;
 
+        public Fraction(int num, int den)
+        {
+            Numerator = num;
+            Denominator = den;
+        }
+
+        #region Properties
         public int Numerator
         {
             get { return _numerator; }
@@ -38,12 +45,7 @@ namespace StudySkills.UI.Core.Models
                 OnPropertyChanged("DecimalValue");
             }
         }
-
-        public Fraction(int num, int den)
-        {
-            Numerator = num;
-            Denominator = den;
-        }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 

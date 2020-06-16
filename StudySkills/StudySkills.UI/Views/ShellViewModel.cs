@@ -9,11 +9,13 @@ namespace StudySkills.UI.Views
 {
     public class ShellViewModel : Conductor<object>, IHandle<GoBackEvent>, IHandle<SwitchToActivityEvent>
     {
+        #region Instance Variables
         private readonly IEventAggregator _eventAggregator;
         private readonly IStudySetManager _studySetManager;
         private StudySetViewModel _studySetVM;
         private FlashcardsViewModel _flashcardsVM;
         private MatchViewModel _matchVM;
+        #endregion
 
         public ShellViewModel(
             StudySetViewModel studySetVM,
@@ -32,6 +34,12 @@ namespace StudySkills.UI.Views
             ActivateItem(_studySetVM);
         }
 
+        #region Actions
+        public void Close(object sender)
+        {
+            ((Window)sender).Close();
+        }
+
         public void DragWindow(object sender)
         {
             ((Window)sender).DragMove(); 
@@ -42,16 +50,13 @@ namespace StudySkills.UI.Views
             ((Window)sender).WindowState = WindowState.Minimized;
         }
 
-        public void Close(object sender)
-        {
-            ((Window)sender).Close();
-        }
-
         public void NotifyOfClosing()
         {
             _eventAggregator.PublishOnUIThread(new AppClosingEvent());
         }
+        #endregion
 
+        #region Event Handlers
         public void Handle(GoBackEvent message)
         {
             ActivateItem(_studySetVM);
@@ -62,8 +67,6 @@ namespace StudySkills.UI.Views
             switch (message.NewActivity)
             {
                 case Activity.Flashcards:
-                    _flashcardsVM.Terms = _studySetManager.GetTerms();
-                    _flashcardsVM.Random = 0;
                     ActivateItem(_flashcardsVM);
                     break;
                 case Activity.Match:
@@ -71,5 +74,6 @@ namespace StudySkills.UI.Views
                     break;
             }
         }
+        #endregion
     }
 }

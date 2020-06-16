@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace StudySkills.UI.Core.Converters
 {
+    /// <summary>
+    /// Converts true to Visible and false to Hidden.
+    /// </summary>
     public class BoolToVisibility : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -18,9 +21,7 @@ namespace StudySkills.UI.Core.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if ((Visibility)value == Visibility.Visible)
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
     }
 }
