@@ -2,6 +2,8 @@
 
 A desktop application that offers different tools to help users study any topic. Users are able to create study sets consisting of user-created term and definition pairs. Users can then use the study sets in a variety of activities to help with studying.
 
+![Screenshot](https://user-images.githubusercontent.com/23173360/86990315-5382da00-c16a-11ea-904f-84590b00f399.png)
+
 ## Getting Started
 
 ### Prerequisites
